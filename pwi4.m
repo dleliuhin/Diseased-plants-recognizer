@@ -148,7 +148,7 @@ numbns = 13;
 
 sup=writeXlsxSup(numbns,h,nh);
 
-numbns = 7;
+numbns = 9;
 typeApproximation = 'gauss2';
 
 %Plot graphical results using Gaussian method
