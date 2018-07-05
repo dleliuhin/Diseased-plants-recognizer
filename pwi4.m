@@ -48,14 +48,14 @@ b=he(:,:,3);
 %вычисление inter_channel_matrix
 rgb_image=im2double(he);%преобразование элементов изображения в формат double
 figure, imshow(he);
-fR = rgb_image (:, :, 1);
-fG = rgb_image (:, :, 2);
-fB = rgb_image (:, :, 3);
+f.R = rgb_image (:, :, 1);
+f.G = rgb_image (:, :, 2);
+f.B = rgb_image (:, :, 3);
 
 %вычисление intra_channel_matrix путем вычитания матриц
-fRG=fR-fG;
-fRB=fR-fB;
-fGB=fG-fB;
+f.RG=f.R-f.G;
+f.RB=f.R-f.B;
+f.GB=f.G-f.B;
 
 % figure;subplot(2,2,1);hist(fR,11);title('fR');
 %        subplot(2,2,2);hist(fG,11);title('fG');
@@ -66,29 +66,29 @@ hef(:,:,2)=medfilt2(g);
 hef(:,:,3)=medfilt2(b);
 
 %адативная эквализация гистограммы
-he1(:,:,1)=adapthisteq(hef(:,:,1),'cliplimit',0.02,'Distribution','rayleigh');
-he1(:,:,2)=adapthisteq(hef(:,:,2),'cliplimit',0.02,'Distribution','rayleigh');
-he1(:,:,3)=adapthisteq(hef(:,:,3),'cliplimit',0.02,'Distribution','rayleigh');
-
-featurecolor2R= imhist(he1(:,:,1)); 
-featurecolor2G= imhist(he1(:,:,2)); 
-featurecolor2B= imhist(he1(:,:,3)); 
+% he1(:,:,1)=adapthisteq(hef(:,:,1),'cliplimit',0.02,'Distribution','rayleigh');
+% he1(:,:,2)=adapthisteq(hef(:,:,2),'cliplimit',0.02,'Distribution','rayleigh');
+% he1(:,:,3)=adapthisteq(hef(:,:,3),'cliplimit',0.02,'Distribution','rayleigh');
+% 
+% featurecolor.2R= imhist(he1(:,:,1)); 
+% featurecolor.2G= imhist(he1(:,:,2)); 
+% featurecolor.2B= imhist(he1(:,:,3)); 
 % figure,subplot(2,2,1);hist(featurecolor2R,9);title('featurecolor2R');
 %        subplot(2,2,2);hist(featurecolor2G,9);title('featurecolor2G');
 %        subplot(2,2,3);hist(featurecolor2B,9);title('featurecolor2B');
 
-heff(:,:,1)=adapthisteq(r,'cliplimit',0.02,'Distribution','rayleigh');
-heff(:,:,2)=adapthisteq(g,'cliplimit',0.02,'Distribution','rayleigh');
-heff(:,:,3)=adapthisteq(b,'cliplimit',0.02,'Distribution','rayleigh');
+% heff(:,:,1)=adapthisteq(r,'cliplimit',0.02,'Distribution','rayleigh');
+% heff(:,:,2)=adapthisteq(g,'cliplimit',0.02,'Distribution','rayleigh');
+% heff(:,:,3)=adapthisteq(b,'cliplimit',0.02,'Distribution','rayleigh');
 
 % figure,subplot(2,3,1);imshow(he);title('orginal image');
 %        subplot(2,3,2);imshow(hef);title(' Median fliter');
 %        subplot(2,3,3);imshow(heff);title(' adaptive Histogram Equalization');
 %        subplot(2,3,5);imshow(he1);title('Median fliter + adaptive Histogram Equalization');
 
-adapthisteqR= imhist(heff(:,:,1)); 
-adapthisteqG= imhist(heff(:,:,2)); 
-adapthisteqB= imhist(heff(:,:,3)); 
+% adapthisteqR= imhist(heff(:,:,1)); 
+% adapthisteqG= imhist(heff(:,:,2)); 
+% adapthisteqB= imhist(heff(:,:,3)); 
 % figure,subplot(2,2,1);hist(adapthisteqR,9);title('adapthisteqR');
 %        subplot(2,2,2);hist(adapthisteqG,9);title('adapthisteqG');
 %        subplot(2,2,3);hist(adapthisteqB,9);title('adapthisteqB');
@@ -102,82 +102,26 @@ adapthisteqB= imhist(heff(:,:,3));
 %Вычисление glcm и статистики для цветовых составляющих
 %R,G,B (inter_channel)
 glcm = graycomatrix(hef(:,:,1), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_R = graycoprops(glcm);%вычисление статистических характеристик glcm
+stats.R = graycoprops(glcm);%вычисление статистических характеристик glcm
 glcm = graycomatrix(hef(:,:,2), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_G = graycoprops(glcm);%вычисление статистических характеристик glcm
+stats.G = graycoprops(glcm);%вычисление статистических характеристик glcm
 glcm = graycomatrix(hef(:,:,3), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_B = graycoprops(glcm);%вычисление статистических характеристик glcm
+stats.B = graycoprops(glcm);%вычисление статистических характеристик glcm
 
 %Вычисление glcm и статистики для разностных составляющих RG, RB, GB, (intra_channel)
 %полученных путем вычитания матриц fR, fB, fG
-glcm = graycomatrix(fRG, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_RG = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(fRB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_RB = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(fGB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats_GB = graycoprops(glcm);%вычисление статистических характеристик glcm
+glcm = graycomatrix(f.RG, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
+stats.RG = graycoprops(glcm);%вычисление статистических характеристик glcm
+glcm = graycomatrix(f.RB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
+stats.RB = graycoprops(glcm);%вычисление статистических характеристик glcm
+glcm = graycomatrix(f.GB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
+stats.GB = graycoprops(glcm);%вычисление статистических характеристик glcm
     
 
 if(i <= (length(f(:))/2))        
-    hR.Contrast(end+1) = stats_R.Contrast(1);
-    hR.Correlation(end+1) = stats_R.Correlation(1);
-    hR.Energy(end+1) = stats_R.Energy(1);
-    hR.Homogeneity(end+1) = stats_R.Homogeneity(1); 
-    
-    hG.Contrast(end+1) = stats_G.Contrast(1);
-    hG.Correlation(end+1) = stats_G.Correlation(1);
-    hG.Energy(end+1) = stats_G.Energy(1);
-    hG.Homogeneity(end+1) = stats_G.Homogeneity(1);    
-    
-    hB.Contrast(end+1) = stats_G.Contrast(1);
-    hB.Correlation(end+1) = stats_G.Correlation(1);
-    hB.Energy(end+1) = stats_G.Energy(1);
-    hB.Homogeneity(end+1) = stats_G.Homogeneity(1);    
-    
-    hRG.Contrast(end+1) = stats_RG.Contrast(1);
-    hRG.Correlation(end+1) = stats_RG.Correlation(1);
-    hRG.Energy(end+1) = stats_RG.Energy(1);
-    hRG.Homogeneity(end+1) = stats_RG.Homogeneity(1);    
-    
-    hRB.Contrast(end+1) = stats_RB.Contrast(1);
-    hRB.Correlation(end+1) = stats_RB.Correlation(1);
-    hRB.Energy(end+1) = stats_RB.Energy(1);
-    hRB.Homogeneity(end+1) = stats_RB.Homogeneity(1);
-    
-    hGB.Contrast(end+1) = stats_GB.Contrast(1);
-    hGB.Correlation(end+1) = stats_GB.Correlation(1);
-    hGB.Energy(end+1) = stats_GB.Energy(1);
-    hGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);    
+    h=rewriteHealthy(h,stats);
 else
-    nhR.Contrast(end+1) = stats_R.Contrast(1);
-    nhR.Correlation(end+1) = stats_R.Correlation(1);
-    nhR.Energy(end+1) = stats_R.Energy(1);
-    nhR.Homogeneity(end+1) = stats_R.Homogeneity(1);
-    
-    nhG.Contrast(end+1) = stats_G.Contrast(1);
-    nhG.Correlation(end+1) = stats_G.Correlation(1);
-    nhG.Energy(end+1) = stats_G.Energy(1);
-    nhG.Homogeneity(end+1) = stats_G.Homogeneity(1);    
-    
-    nhB.Contrast(end+1) = stats_B.Contrast(1);
-    nhB.Correlation(end+1) = stats_B.Correlation(1);
-    nhB.Energy(end+1) = stats_B.Energy(1);
-    nhB.Homogeneity(end+1) = stats_B.Homogeneity(1);    
-    
-    nhRG.Contrast(end+1) = stats_RG.Contrast(1);
-    nhRG.Correlation(end+1) = stats_RG.Correlation(1);
-    nhRG.Energy(end+1) = stats_RG.Energy(1);
-    nhRG.Homogeneity(end+1) = stats_RG.Homogeneity(1);    
-    
-    nhRB.Contrast(end+1) = stats_RB.Contrast(1);
-    nhRB.Correlation(end+1) = stats_RB.Correlation(1);
-    nhRB.Energy(end+1) = stats_RB.Energy(1);
-    nhRB.Homogeneity(end+1) = stats_RB.Homogeneity(1);
-    
-    nhGB.Contrast(end+1) = stats_GB.Contrast(1);
-    nhGB.Correlation(end+1) = stats_GB.Correlation(1);
-    nhGB.Energy(end+1) = stats_GB.Energy(1);
-    nhGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);        
+    nh=rewriteDiseased(nh,stats);        
 end
 
 xlswrite('Results.xlsx', fileName(i), 1, strcat('A',num2str(2+(i-1)*4)));
@@ -216,7 +160,6 @@ xlswrite('Results.xlsx', stats_GB.Homogeneity, 1, strcat('M',num2str(5+(i-1)*4))
 clear stats_R stats_G stats_B stats_GB stats_RB stats_RG;
 clear adapthisteqB adapthisteqG adapthisteqR g r rgb_image;
 clear b fB fG fGB fR fRB fRG g glcm;
-clear featurecolor2B featurecolor2G featurecolor2R; 
 clear he he1 hef heff featurecolor2B featurecolor2G featurecolor2R; 
 close all;
 end
