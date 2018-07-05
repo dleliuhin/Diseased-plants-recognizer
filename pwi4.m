@@ -8,8 +8,8 @@ clc;
 clear;
 close all;
 
-f = dir('Healthy/*.jpg');
-fd = dir('Diseased/*.jpg');
+f = dir('Material/Healthy/*.jpg');
+fd = dir('Material/Diseased/*.jpg');
 
 f=[f;fd];
 
@@ -148,10 +148,13 @@ numbns = 13;
 
 sup=writeXlsxSup(numbns,h,nh);
 
-numbns = 11;
+numbns = 7;
 typeApproximation = 'gauss2';
 
-%Plot graphical results
-graphModule(h,nh,typeApproximation,numbns)
+%Plot graphical results using Gaussian method
+graphGaussModule(h,nh,typeApproximation,numbns)
+close all;
 
+%Plot graphical results using Spline method
+graphSplineModule(h,nh,numbns)
 close all;
