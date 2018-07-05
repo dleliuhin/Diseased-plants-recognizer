@@ -239,59 +239,8 @@ close all;
 end
 
 %-----------------------Finding averages attributes-------------------
-% xlswrite('Results.xlsx', mean(h_R_Contrast1), 1, strcat('R',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_R_Contrast1), 1, strcat('S',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_R_Correlation1), 1, strcat('R',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_R_Correlation1), 1, strcat('S',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_R_Energy1), 1, strcat('R',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_R_Energy1), 1, strcat('S',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_R_Homogeneity1), 1, strcat('R',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_R_Homogeneity1), 1, strcat('S',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_G_Contrast1), 1, strcat('T',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_G_Contrast1), 1, strcat('U',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_G_Correlation1), 1, strcat('T',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_G_Correlation1), 1, strcat('U',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_G_Energy1), 1, strcat('T',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_G_Energy1), 1, strcat('U',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_G_Homogeneity1), 1, strcat('T',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_G_Homogeneity1), 1, strcat('U',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_B_Contrast1), 1, strcat('V',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_B_Contrast1), 1, strcat('W',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_B_Correlation1), 1, strcat('V',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_B_Correlation1), 1, strcat('W',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_B_Energy1), 1, strcat('V',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_B_Energy1), 1, strcat('W',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_B_Homogeneity1), 1, strcat('V',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_B_Homogeneity1), 1, strcat('W',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_RG_Contrast1), 1, strcat('X',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_RG_Contrast1), 1, strcat('Y',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_RG_Correlation1), 1, strcat('X',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_RG_Correlation1), 1, strcat('Y',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_RG_Energy1), 1, strcat('X',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_RG_Energy1), 1, strcat('Y',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_RG_Homogeneity1), 1, strcat('X',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_RG_Homogeneity1), 1, strcat('Y',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_RB_Contrast1), 1, strcat('Z',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_RB_Contrast1), 1, strcat('AA',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_RB_Correlation1), 1, strcat('Z',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_RB_Correlation1), 1, strcat('AA',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_RB_Energy1), 1, strcat('Z',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_RB_Energy1), 1, strcat('AA',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_RB_Homogeneity1), 1, strcat('Z',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_RB_Homogeneity1), 1, strcat('AA',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_GB_Contrast1), 1, strcat('AB',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_GB_Contrast1), 1, strcat('AC',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_GB_Correlation1), 1, strcat('AB',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_GB_Correlation1), 1, strcat('AC',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_GB_Energy1), 1, strcat('AB',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_GB_Energy1), 1, strcat('AC',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_GB_Homogeneity1), 1, strcat('AB',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_GB_Homogeneity1), 1, strcat('AC',num2str(14)));
+
+averAtrb(hR,hG,hB,hRG,hRB,hGB,nhR,nhG,nhB,nhRG,nhRB,nhGB);
 
 %----------------------Aligning ranges of arrays--------------------
 [h_R_Contrast1,nh_R_Contrast1]=histdimcompare(h_R_Contrast1,nh_R_Contrast1);
