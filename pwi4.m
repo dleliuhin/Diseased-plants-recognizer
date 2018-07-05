@@ -15,24 +15,7 @@ f=[f;fd];
 
 fileName = {f.name};
 
-%Stats_R empty arrays for output histograms
-hR.Contrast=[];hR.Correlation=[];hR.Energy=[];hR.Homogeneity=[];
-nhR.Contrast=[];nhR.Correlation=[];nhR.Energy=[];nhR.Homogeneity=[];
-%Stats_G empty arrays for output histograms
-hG.Contrast=[];hG.Correlation=[];hG.Energy=[];hG.Homogeneity=[];
-nhG.Contrast=[];nhG.Correlation=[];nhG.Energy=[];nhG.Homogeneity=[];
-%Stats_B empty arrays for output histograms
-hB.Contrast=[];hB.Correlation=[];hB.Energy=[];hB.Homogeneity=[];
-nhB.Contrast=[];nhB.Correlation=[];nhB.Energy=[];nhB.Homogeneity=[];
-%Stats_RG empty arrays for output histograms
-hRG.Contrast=[];hRG.Correlation=[];hRG.Energy=[];hRG.Homogeneity=[];
-nhRG.Contrast=[];nhRG.Correlation=[];nhRG.Energy=[];nhRG.Homogeneity=[];
-%Stats_RB empty arrays for output histograms
-hRB.Contrast=[];hRB.Correlation=[];hRB.Energy=[];hRB.Homogeneity=[];
-nhRB.Contrast=[];nhRB.Correlation=[];nhRB.Energy=[];nhRB.Homogeneity=[];
-%Stats_GB empty arrays for output histograms
-hGB.Contrast=[];hGB.Correlation=[];hGB.Energy=[];hGB.Homogeneity=[];
-nhGB.Contrast=[];nhGB.Correlation=[];nhGB.Energy=[];nhGB.Homogeneity=[];
+[h,nh] = initialStats();
 
 for i = 1:length(f(:))
 

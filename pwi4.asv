@@ -16,20 +16,20 @@ f=[f;fd];
 fileName = {f.name};
 
 %Stats_R empty arrays for output histograms
-hR.Contrast=[];hR.Correlation=[];hR.Energy=[];hR.Homogeneity=[];
-nhR.Contrast=[];nhR.Correlation=[];nhR.Energy=[];nhR.Homogeneity=[];
+h.R.Contrast=[];h.R.Correlation=[];h.R.Energy=[];h.R.Homogeneity=[];
+nh.R.Contrast=[];nh.R.Correlation=[];nh.R.Energy=[];nh.R.Homogeneity=[];
 %Stats_G empty arrays for output histograms
-hG.Contrast=[];hG.Correlation=[];hG.Energy=[];hG.Homogeneity=[];
-nhG.Contrast=[];nhG.Correlation=[];nhG.Energy=[];nhG.Homogeneity=[];
+h.G.Contrast=[];h.G.Correlation=[];h.G.Energy=[];h.G.Homogeneity=[];
+nh.G.Contrast=[];nh.G.Correlation=[];nh.G.Energy=[];nh.G.Homogeneity=[];
 %Stats_B empty arrays for output histograms
-hB.Contrast=[];hB.Correlation=[];hB.Energy=[];hB.Homogeneity=[];
-nhB.Contrast=[];nhB.Correlation=[];nhB.Energy=[];nhB.Homogeneity=[];
+h.B.Contrast=[];h.B.Correlation=[];h.B.Energy=[];h.B.Homogeneity=[];
+nh.B.Contrast=[];nh.B.Correlation=[];nh.B.Energy=[];nh.B.Homogeneity=[];
 %Stats_RG empty arrays for output histograms
-hRG.Contrast=[];hRG.Correlation=[];hRG.Energy=[];hRG.Homogeneity=[];
-nhRG.Contrast=[];nhRG.Correlation=[];nhRG.Energy=[];nhRG.Homogeneity=[];
+h.RG.Contrast=[];h.RG.Correlation=[];h.RG.Energy=[];h.RG.Homogeneity=[];
+nh.RG.Contrast=[];nh.RG.Correlation=[];nh.RG.Energy=[];nh.RG.Homogeneity=[];
 %Stats_RB empty arrays for output histograms
-hRB.Contrast=[];hRB.Correlation=[];hRB.Energy=[];hRB.Homogeneity=[];
-nhRB.Contrast=[];nhRB.Correlation=[];nhRB.Energy=[];nhRB.Homogeneity=[];
+h.RB.Contrast=[];hRB.Correlation=[];hRB.Energy=[];hRB.Homogeneity=[];
+nh.RB.Contrast=[];nhRB.Correlation=[];nhRB.Energy=[];nhRB.Homogeneity=[];
 %Stats_GB empty arrays for output histograms
 hGB.Contrast=[];hGB.Correlation=[];hGB.Energy=[];hGB.Homogeneity=[];
 nhGB.Contrast=[];nhGB.Correlation=[];nhGB.Energy=[];nhGB.Homogeneity=[];
@@ -166,35 +166,35 @@ if(i <= (length(f(:))/2))
     hGB.Energy(end+1) = stats_GB.Energy(1);
     hGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);    
 else
-    nhR_Contrast(end+1) = stats_R.Contrast(1);
-    nhR_Correlation(end+1) = stats_R.Correlation(1);
-    nhR_Energy(end+1) = stats_R.Energy(1);
-    nhR_Homogeneity(end+1) = stats_R.Homogeneity(1);
+    nhR.Contrast(end+1) = stats_R.Contrast(1);
+    nhR.Correlation(end+1) = stats_R.Correlation(1);
+    nhR.Energy(end+1) = stats_R.Energy(1);
+    nhR.Homogeneity(end+1) = stats_R.Homogeneity(1);
     
-    nhG_Contrast1(end+1) = stats_G.Contrast(1);
-    nhG_Correlation1(end+1) = stats_G.Correlation(1);
-    nhG_Energy1(end+1) = stats_G.Energy(1);
-    nhG_Homogeneity1(end+1) = stats_G.Homogeneity(1);    
+    nhG.Contrast(end+1) = stats_G.Contrast(1);
+    nhG.Correlation(end+1) = stats_G.Correlation(1);
+    nhG.Energy(end+1) = stats_G.Energy(1);
+    nhG.Homogeneity(end+1) = stats_G.Homogeneity(1);    
     
-    nhB_Contrast1(end+1) = stats_B.Contrast(1);
-    nhB_Correlation1(end+1) = stats_B.Correlation(1);
-    nhB_Energy1(end+1) = stats_B.Energy(1);
-    nhB_Homogeneity1(end+1) = stats_B.Homogeneity(1);    
+    nhB.Contrast(end+1) = stats_B.Contrast(1);
+    nhB.Correlation(end+1) = stats_B.Correlation(1);
+    nhB.Energy(end+1) = stats_B.Energy(1);
+    nhB.Homogeneity(end+1) = stats_B.Homogeneity(1);    
     
-    nhRG_Contrast1(end+1) = stats_RG.Contrast(1);
-    nhRG_Correlation1(end+1) = stats_RG.Correlation(1);
-    nhRG_Energy1(end+1) = stats_RG.Energy(1);
-    nhRG_Homogeneity1(end+1) = stats_RG.Homogeneity(1);    
+    nhRG.Contrast(end+1) = stats_RG.Contrast(1);
+    nhRG.Correlation(end+1) = stats_RG.Correlation(1);
+    nhRG.Energy(end+1) = stats_RG.Energy(1);
+    nhRG.Homogeneity(end+1) = stats_RG.Homogeneity(1);    
     
-    nhRB_Contrast1(end+1) = stats_RB.Contrast(1);
-    nhRB_Correlation1(end+1) = stats_RB.Correlation(1);
-    nhRB_Energy1(end+1) = stats_RB.Energy(1);
-    nhRB_Homogeneity1(end+1) = stats_RB.Homogeneity(1);
+    nhRB.Contrast(end+1) = stats_RB.Contrast(1);
+    nhRB.Correlation(end+1) = stats_RB.Correlation(1);
+    nhRB.Energy(end+1) = stats_RB.Energy(1);
+    nhRB.Homogeneity(end+1) = stats_RB.Homogeneity(1);
     
-    nhGB_Contrast1(end+1) = stats_GB.Contrast(1);
-    nhGB_Correlation1(end+1) = stats_GB.Correlation(1);
-    nhGB_Energy1(end+1) = stats_GB.Energy(1);
-    nhGB_Homogeneity1(end+1) = stats_GB.Homogeneity(1);        
+    nhGB.Contrast(end+1) = stats_GB.Contrast(1);
+    nhGB.Correlation(end+1) = stats_GB.Correlation(1);
+    nhGB.Energy(end+1) = stats_GB.Energy(1);
+    nhGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);        
 end
 
 xlswrite('Results.xlsx', fileName(i), 1, strcat('A',num2str(2+(i-1)*4)));
@@ -239,59 +239,8 @@ close all;
 end
 
 %-----------------------Finding averages attributes-------------------
-% xlswrite('Results.xlsx', mean(h_R_Contrast1), 1, strcat('R',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_R_Contrast1), 1, strcat('S',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_R_Correlation1), 1, strcat('R',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_R_Correlation1), 1, strcat('S',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_R_Energy1), 1, strcat('R',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_R_Energy1), 1, strcat('S',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_R_Homogeneity1), 1, strcat('R',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_R_Homogeneity1), 1, strcat('S',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_G_Contrast1), 1, strcat('T',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_G_Contrast1), 1, strcat('U',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_G_Correlation1), 1, strcat('T',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_G_Correlation1), 1, strcat('U',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_G_Energy1), 1, strcat('T',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_G_Energy1), 1, strcat('U',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_G_Homogeneity1), 1, strcat('T',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_G_Homogeneity1), 1, strcat('U',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_B_Contrast1), 1, strcat('V',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_B_Contrast1), 1, strcat('W',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_B_Correlation1), 1, strcat('V',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_B_Correlation1), 1, strcat('W',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_B_Energy1), 1, strcat('V',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_B_Energy1), 1, strcat('W',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_B_Homogeneity1), 1, strcat('V',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_B_Homogeneity1), 1, strcat('W',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_RG_Contrast1), 1, strcat('X',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_RG_Contrast1), 1, strcat('Y',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_RG_Correlation1), 1, strcat('X',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_RG_Correlation1), 1, strcat('Y',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_RG_Energy1), 1, strcat('X',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_RG_Energy1), 1, strcat('Y',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_RG_Homogeneity1), 1, strcat('X',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_RG_Homogeneity1), 1, strcat('Y',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_RB_Contrast1), 1, strcat('Z',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_RB_Contrast1), 1, strcat('AA',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_RB_Correlation1), 1, strcat('Z',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_RB_Correlation1), 1, strcat('AA',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_RB_Energy1), 1, strcat('Z',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_RB_Energy1), 1, strcat('AA',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_RB_Homogeneity1), 1, strcat('Z',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_RB_Homogeneity1), 1, strcat('AA',num2str(14)));
-% 
-% xlswrite('Results.xlsx', mean(h_GB_Contrast1), 1, strcat('AB',num2str(11)));
-% xlswrite('Results.xlsx', mean(nh_GB_Contrast1), 1, strcat('AC',num2str(11)));
-% xlswrite('Results.xlsx', mean(h_GB_Correlation1), 1, strcat('AB',num2str(12)));
-% xlswrite('Results.xlsx', mean(nh_GB_Correlation1), 1, strcat('AC',num2str(12)));
-% xlswrite('Results.xlsx', mean(h_GB_Energy1), 1, strcat('AB',num2str(13)));
-% xlswrite('Results.xlsx', mean(nh_GB_Energy1), 1, strcat('AC',num2str(13)));
-% xlswrite('Results.xlsx', mean(h_GB_Homogeneity1), 1, strcat('AB',num2str(14)));
-% xlswrite('Results.xlsx', mean(nh_GB_Homogeneity1), 1, strcat('AC',num2str(14)));
+
+averAtrb(hR,hG,hB,hRG,hRB,hGB,nhR,nhG,nhB,nhRG,nhRB,nhGB);
 
 %----------------------Aligning ranges of arrays--------------------
 [h_R_Contrast1,nh_R_Contrast1]=histdimcompare(h_R_Contrast1,nh_R_Contrast1);
