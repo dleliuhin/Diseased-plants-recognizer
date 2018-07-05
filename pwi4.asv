@@ -166,35 +166,35 @@ if(i <= (length(f(:))/2))
     hGB.Energy(end+1) = stats_GB.Energy(1);
     hGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);    
 else
-    nhR.Contrast(end+1) = stats_R.Contrast(1);
-    nhR.Correlation(end+1) = stats_R.Correlation(1);
-    nhR.Energy(end+1) = stats_R.Energy(1);
-    nhR.Homogeneity(end+1) = stats_R.Homogeneity(1);
+    nhR_Contrast(end+1) = stats_R.Contrast(1);
+    nhR_Correlation(end+1) = stats_R.Correlation(1);
+    nhR_Energy(end+1) = stats_R.Energy(1);
+    nhR_Homogeneity(end+1) = stats_R.Homogeneity(1);
     
-    nhG.Contrast(end+1) = stats_G.Contrast(1);
-    nhG.Correlation(end+1) = stats_G.Correlation(1);
-    nhG.Energy(end+1) = stats_G.Energy(1);
-    nhG.Homogeneity(end+1) = stats_G.Homogeneity(1);    
+    nhG_Contrast1(end+1) = stats_G.Contrast(1);
+    nhG_Correlation1(end+1) = stats_G.Correlation(1);
+    nhG_Energy1(end+1) = stats_G.Energy(1);
+    nhG_Homogeneity1(end+1) = stats_G.Homogeneity(1);    
     
-    nhB.Contrast(end+1) = stats_B.Contrast(1);
-    nhB.Correlation(end+1) = stats_B.Correlation(1);
-    nhB.Energy(end+1) = stats_B.Energy(1);
-    nhB.Homogeneity(end+1) = stats_B.Homogeneity(1);    
+    nhB_Contrast1(end+1) = stats_B.Contrast(1);
+    nhB_Correlation1(end+1) = stats_B.Correlation(1);
+    nhB_Energy1(end+1) = stats_B.Energy(1);
+    nhB_Homogeneity1(end+1) = stats_B.Homogeneity(1);    
     
-    nhRG.Contrast(end+1) = stats_RG.Contrast(1);
-    nhRG.Correlation(end+1) = stats_RG.Correlation(1);
-    nhRG.Energy(end+1) = stats_RG.Energy(1);
-    nhRG.Homogeneity(end+1) = stats_RG.Homogeneity(1);    
+    nhRG_Contrast1(end+1) = stats_RG.Contrast(1);
+    nhRG_Correlation1(end+1) = stats_RG.Correlation(1);
+    nhRG_Energy1(end+1) = stats_RG.Energy(1);
+    nhRG_Homogeneity1(end+1) = stats_RG.Homogeneity(1);    
     
-    nhRB.Contrast(end+1) = stats_RB.Contrast(1);
-    nhRB.Correlation(end+1) = stats_RB.Correlation(1);
-    nhRB.Energy(end+1) = stats_RB.Energy(1);
-    nhRB.Homogeneity(end+1) = stats_RB.Homogeneity(1);
+    nhRB_Contrast1(end+1) = stats_RB.Contrast(1);
+    nhRB_Correlation1(end+1) = stats_RB.Correlation(1);
+    nhRB_Energy1(end+1) = stats_RB.Energy(1);
+    nhRB_Homogeneity1(end+1) = stats_RB.Homogeneity(1);
     
-    nhGB.Contrast(end+1) = stats_GB.Contrast(1);
-    nhGB.Correlation(end+1) = stats_GB.Correlation(1);
-    nhGB.Energy(end+1) = stats_GB.Energy(1);
-    nhGB.Homogeneity(end+1) = stats_GB.Homogeneity(1);        
+    nhGB_Contrast1(end+1) = stats_GB.Contrast(1);
+    nhGB_Correlation1(end+1) = stats_GB.Correlation(1);
+    nhGB_Energy1(end+1) = stats_GB.Energy(1);
+    nhGB_Homogeneity1(end+1) = stats_GB.Homogeneity(1);        
 end
 
 xlswrite('Results.xlsx', fileName(i), 1, strcat('A',num2str(2+(i-1)*4)));
