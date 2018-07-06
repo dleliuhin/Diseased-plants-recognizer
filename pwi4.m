@@ -149,7 +149,7 @@ numbns = 13;
 sup=writeXlsxSup(numbns,h,nh);
 
 numbns = 21;
-typeApproximation = 'gauss6';
+typeApproximation = 'gauss2';
 
 %Plot graphical results using Gaussian method
 graphGaussModule(h,nh,typeApproximation,numbns)
