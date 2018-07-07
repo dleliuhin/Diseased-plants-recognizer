@@ -1,6 +1,10 @@
-Material/
+/Material
+/Plots
+/Result
 
 *.rar
 *.jpg
 *.mat
-
+*.fig
+*.asv
+*.xlsx
