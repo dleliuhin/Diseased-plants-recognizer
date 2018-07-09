@@ -29,9 +29,9 @@ clc;
 % листа растения на всех изображениях была бы одной и той же
 
 if (i <= (length(f(:))/2))
-    he = imread(fullfile('Healthy',f(i).name));
+    he = imread(fullfile('Material/Healthy',f(i).name));
 else
-    he = imread(fullfile('Diseased',f(i).name));%растение
+    he = imread(fullfile('Material/Diseased',f(i).name));%растение
 end
 
 %he = imrotate(he, 90);
