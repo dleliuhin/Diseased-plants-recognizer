@@ -8,6 +8,8 @@ clc;
 clear;
 close all;
 
+
+
 f = dir('Material/Healthy/*.jpg');
 fd = dir('Material/Diseased/*.jpg');
 
