@@ -94,11 +94,9 @@ hef(:,:,3)=medfilt2(b);
 %        subplot(2,2,2);hist(adapthisteqG,9);title('adapthisteqG');
 %        subplot(2,2,3);hist(adapthisteqB,9);title('adapthisteqB');
      
-
 % figure,subplot(2,2,1);imshow(he1(:,:,1));title('adapthisteq-R');
 %        subplot(2,2,2);imshow(he1(:,:,1));title('adapthisteq-G');
 %        subplot(2,2,3);imshow(he1(:,:,1));title('adapthisteq-B');
-      
 
 %Вычисление glcm и статистики для цветовых составляющих
 %R,G,B (inter_channel)
@@ -116,8 +114,7 @@ stats.RG = graycoprops(glcm);%вычисление статистических характеристик glcm
 glcm = graycomatrix(fRB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
 stats.RB = graycoprops(glcm);%вычисление статистических характеристик glcm
 glcm = graycomatrix(fGB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.GB = graycoprops(glcm);%вычисление статистических характеристик glcm
-    
+stats.GB = graycoprops(glcm);%вычисление статистических характеристик glcms   
 
 if(i <= (length(f(:))/2))        
     h=rewriteHealthy(h,stats);
@@ -125,7 +122,7 @@ else
     nh=rewriteDiseased(nh,stats);        
 end
 
-writeXlsxData(fileName,i,stats);
+%writeXlsxData(fileName,i,stats);
 
 % pause;
 clear stats r g b rgb_image;
@@ -133,6 +130,8 @@ clear fR fG fB fRG fRB fGB glcm;
 clear he hef;
 close all;
 end
+
+[h,nh] = checkStatsNan(h,nh);
 
 %-----------------------Finding averages attributes-------------------
 
