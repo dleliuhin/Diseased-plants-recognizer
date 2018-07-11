@@ -8,7 +8,12 @@ clc;
 clear;
 close all;
 
-
+%This works only for Windows!!!
+%Change adding subfolders as your system configurations
+addpath(strcat(pwd,'\TransformModule'),strcat(pwd,'\AdditionalModule'),'-end');
+savepath;
+addpath(strcat(pwd,'\GraphicalModule'),strcat(pwd,'\ReadnWriteModule'),'-end');
+savepath;
 
 f = dir('Material/Healthy/*.jpg');
 fd = dir('Material/Diseased/*.jpg');
