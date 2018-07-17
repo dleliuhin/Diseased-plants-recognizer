@@ -146,7 +146,7 @@ averAtrb(h,nh);
 
 %----------------------Aligning ranges of arrays--------------------
 
-[h,nh]=alignRanges(h,nh);
+%[h,nh]=alignRanges(h,nh);
 
 %Îןעטלאכüםמו ךמכ-גמ סעמכבצמג םא דטסעמדנאללו
 numbns = 13;
