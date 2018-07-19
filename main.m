@@ -31,7 +31,7 @@ clc;
 %Обрабатываться будут изображения mini, полученные из полноформатных
 %изображений путем масштабирования с уменьшением размерности 
 %примерно в 10 раз, чтобы размерность изображения mini
-%была около 300х500 пикселов
+%была около 100*300 пикселов
 %При масштабировании нужно стремиться, чтобы размерность изображения 
 % листа растения на всех изображениях была бы одной и той же
 
@@ -156,9 +156,10 @@ sup=writeXlsxSup(numbns,h,nh);
 
 numbns = 5;
 typeApproximation = 'gauss1';
+coefStd = 1;
 
 %Plot graphical results using Gaussian method
-graphGaussModule(h,nh,typeApproximation,numbns)
+graphGaussModule(h,nh,typeApproximation,numbns,coefStd)
 close all;
 
 %Plot graphical results using Spline method
