@@ -1,4 +1,4 @@
-function [plotValues] = initializePlotsValues()
+function [oPlotValues] = initializePlotsValues()
 %% INITIALIZEPLOTVALUES
 % Allocate memory for dynamic arrays of *plotValues* structure.
 %
@@ -8,10 +8,10 @@ function [plotValues] = initializePlotsValues()
 %
 % * Output
 %
-% -- plotValues - return structure of values for plotting graphics
-%            including R, G, B, RG, RB, GB components.
-%            Every component contains Contrast, Correlation, Energy,
-%             Homogeneity properties.
+% -- oPlotValues - return structure of values for plotting graphics
+%                  including R, G, B, RG, RB, GB components.
+%                  Every component contains Contrast, Correlation, Energy,
+%                  Homogeneity properties.
 % 
 % * Examples:
 %
@@ -38,7 +38,22 @@ function [plotValues] = initializePlotsValues()
 
 %% Code
 
-oStruct.h =     initializePlotComponents();
-oStruct.nh1 =   initializePlotComponents();
+oPlotValues.h =     initializePlotComponents();
+oPlotValues.nh1 =   initializePlotComponents();
+% oPlotValues.nh2 =   initializePlotComponents();
+% oPlotValues.nh3 =   initializePlotComponents();
+% oPlotValues.nh4 =   initializePlotComponents();
+% oPlotValues.nh5 =   initializePlotComponents();
+% oPlotValues.nh6 =   initializePlotComponents();
+% oPlotValues.nh7 =   initializePlotComponents();
+% oPlotValues.nh8 =   initializePlotComponents();
+% oPlotValues.nh9 =   initializePlotComponents();
+% oPlotValues.nh10 =   initializePlotComponents();
+% oPlotValues.nh11 =   initializePlotComponents();
+% oPlotValues.nh12 =   initializePlotComponents();
+% oPlotValues.nh13 =   initializePlotComponents();
+% oPlotValues.nh14 =   initializePlotComponents();
+% oPlotValues.nh15 =   initializePlotComponents();
+
 
 end

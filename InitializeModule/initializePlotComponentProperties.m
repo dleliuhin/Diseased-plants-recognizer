@@ -1,18 +1,14 @@
 function [oStruct] = initializePlotComponentProperties()
 %% INITIALIZEPLOTCOMPONENTSPROPERTIES 
-% Summary of this function goes here. 
+% Allocate memory for dynamic arrays of *oStruct* structure.
 % 
 % * Syntax 
 % 
-%	[OUTPUTARGS] = INITIALIZEPLOTCOMPONENTSPROPERTIES(INPUTARGS) Explain usage here
-% 
-% * Input 
-% 
-% -- INPUTARGS -  
+%	[OUTPUTARGS] = INITIALIZEPLOTCOMPONENTSPROPERTIES(INPUTARGS)
 % 
 % * Output 
 % 
-% -- OUTPUTARGS -  
+% -- oStruct - output structure with allocated memory for plot values.
 % 
 % * Examples: 
 % 
@@ -25,7 +21,7 @@ function [oStruct] = initializePlotComponentProperties()
 % * Author: Dmitrii Leliuhin 
 % * Email: dleliuhin@mail.ru 
 % * Date: 21/10/2018 22:18:00 
-% * Version: 0.1 $ 
+% * Version: 1.0 $ 
 % * Requirements: PCWIN64, MatLab R2016a 
 % 
 % * Warning: 
@@ -34,7 +30,7 @@ function [oStruct] = initializePlotComponentProperties()
 % 
 % * TODO: 
 % 
-% # TODO list. 
+% # Replace dynamic memory allocation *[]* with *zeros()* function.
 % 
 
 %% Code 

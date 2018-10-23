@@ -18,7 +18,7 @@ function [oSubMarks] = initializeSubMurks()
 % 
 % * See also: 
 % 
-% List related files here 
+% INITIALIZEINDICATOR
 % 
 % * Author: Dmitrii Leliuhin 
 % * Email: dleliuhin@mail.ru 

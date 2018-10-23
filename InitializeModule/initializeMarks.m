@@ -20,7 +20,7 @@ function [oMarks] = initializeMarks()
 % 
 % * See also: 
 %   
-% INITIALIZEINDICATOR
+% INITIALIZESUBMARKS
 %
 % * Author: *Dmitrii Leliuhin* 
 % * Email: dleliuhin@mail.ru
@@ -41,5 +41,20 @@ function [oMarks] = initializeMarks()
 
 oMarks.leaves.h =      initializeSubMurks();
 oMarks.leaves.nh1 =    initializeSubMurks();
+% oMarks.leaves.nh2 =    initializeSubMurks();
+% oMarks.leaves.nh3 =    initializeSubMurks();
+% oMarks.leaves.nh4 =    initializeSubMurks();
+% oMarks.leaves.nh5 =    initializeSubMurks();
+% oMarks.leaves.nh6 =    initializeSubMurks();
+% oMarks.leaves.nh7 =    initializeSubMurks();
+% oMarks.leaves.nh8 =    initializeSubMurks();
+% oMarks.leaves.nh9 =    initializeSubMurks();
+% oMarks.leaves.nh10 =    initializeSubMurks();
+% oMarks.leaves.nh11 =    initializeSubMurks();
+% oMarks.leaves.nh12 =    initializeSubMurks();
+% oMarks.leaves.nh13 =    initializeSubMurks();
+% oMarks.leaves.nh14 =    initializeSubMurks();
+% oMarks.leaves.nh15 =    initializeSubMurks();
+
 
 end
