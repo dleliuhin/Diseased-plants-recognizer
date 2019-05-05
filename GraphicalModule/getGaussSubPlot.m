@@ -93,6 +93,8 @@ ioPlotValues = plotGauss(ioPlotValues, ...
                          iBinsValue, ...
                          iCoefStd);
 
+legend('Здоровые', 'fit', 'Больные', 'fit');
+
 hold off;
 
 end

@@ -106,7 +106,7 @@ f = fit(edges, nums, iTypeApproximation);
                                 iCoefStd);
 plot(f, strcat(iColor, '-'), edges, nums, strcat(iColor, '.'));
 
-title(strcat('Gaussian_', iComponentName, '.', iPropertyName), ...
+title(strcat('Gaussian.', iComponentName, '.', iPropertyName), ...
       'fontsize', 10);
 xlabel('x');
 ylabel('f(x)', 'rotation', 1);
