@@ -52,25 +52,28 @@ function [marks] = getMarks(marks, plotValues)
 
 %% Code 
 
-marks.leaves.h.means =       getMeanIndicator(marks.leaves.h.means, plotValues.h);
-marks.leaves.nh1.means =     getMeanIndicator(marks.leaves.nh1.means, plotValues.nh1);
+marks.h = getAllIndicators(marks.h, plotValues.h);
 
-marks.leaves.h.stds =        getStdIndicator(marks.leaves.h.stds, plotValues.h);
-marks.leaves.nh1.stds =      getStdIndicator(marks.leaves.nh1.stds, plotValues.nh1);
+marks.nh1 = getAllIndicators(marks.nh1, plotValues.nh1);
 
-marks.leaves.h.medianes =    getMedianeIndicator(marks.leaves.h.medianes, plotValues.h);
-marks.leaves.nh1.medianes =  getMedianeIndicator(marks.leaves.nh1.medianes, plotValues.nh1);
+marks.nh2 = getAllIndicators(marks.nh2, plotValues.nh2);
 
-marks.leaves.h.modes =       getModeIndicator(marks.leaves.h.modes, plotValues.h);
-marks.leaves.nh1.modes =     getModeIndicator(marks.leaves.nh1.modes, plotValues.nh1);
+marks.nh3 = getAllIndicators(marks.nh3, plotValues.nh3);
 
-marks.leaves.h.ranges =      getRangeIndicator(marks.leaves.h.ranges, plotValues.h);
-marks.leaves.nh1.ranges =    getRangeIndicator(marks.leaves.nh1.ranges, plotValues.nh1);
+marks.nh4 = getAllIndicators(marks.nh4, plotValues.nh4);
 
-marks.leaves.h.minRanges =   getMinRangeIndicator(marks.leaves.h.minRanges, plotValues.h);
-marks.leaves.nh1.minRanges = getMinRangeIndicator(marks.leaves.nh1.minRanges, plotValues.nh1);
+marks.nh5 = getAllIndicators(marks.nh5, plotValues.nh5);
 
-marks.leaves.h.maxRanges =   getMaxRangeIndicator(marks.leaves.h.maxRanges, plotValues.h);
-marks.leaves.nh1.maxRanges = getMaxRangeIndicator(marks.leaves.nh1.maxRanges, plotValues.nh1);
+marks.nh6 = getAllIndicators(marks.nh6, plotValues.nh6);
+
+marks.nh7 = getAllIndicators(marks.nh7, plotValues.nh7);
+
+marks.nh8 = getAllIndicators(marks.nh8, plotValues.nh8);
+
+marks.nh9 = getAllIndicators(marks.nh9, plotValues.nh9);
+
+marks.nh10 = getAllIndicators(marks.nh10, plotValues.nh10);
+
+save('Workspaces/marks.mat', 'marks');
 
 end

@@ -36,17 +36,17 @@ function [oStruct] = initializePlanticGroups()
 
 %% Code 
 
-oStruct.h =     initializeComponents();
+oStruct.h   =   initializeComponents();
 oStruct.nh1 =   initializeComponents();
-% oStruct.nh2 = initializeComponents();
-% oStruct.nh3 = initializeComponents();
-% oStruct.nh4 = initializeComponents();
-% oStruct.nh5 = initializeComponents();
-% oStruct.nh6 = initializeComponents();
-% oStruct.nh7 = initializeComponents();
-% oStruct.nh8 = initializeComponents();
-% oStruct.nh9 = initializeComponents();
-% oStruct.nh10 = initializeComponents();
+oStruct.nh2 =   initializeComponents();
+oStruct.nh3 =   initializeComponents();
+oStruct.nh4 =   initializeComponents();
+oStruct.nh5 =   initializeComponents();
+oStruct.nh6 =   initializeComponents();
+oStruct.nh7 =   initializeComponents();
+oStruct.nh8 =   initializeComponents();
+oStruct.nh9 =   initializeComponents();
+oStruct.nh10 =  initializeComponents();
 % oStruct.nh11 = initializeComponents();
 % oStruct.nh12 = initializeComponents();
 % oStruct.nh13 = initializeComponents();

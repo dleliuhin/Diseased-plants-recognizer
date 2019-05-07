@@ -42,53 +42,18 @@ addpath(strcat(pwd,'\TransformModule'),strcat(pwd,'\AdditionalModule'),'-end');
 savepath;
 addpath(strcat(pwd,'\GraphicalModule'),strcat(pwd,'\ReadnWriteModule'),'-end');
 savepath;
-addpath(strcat(pwd,'\InitializeModule'),'-end');
+addpath(strcat(pwd,'\InitializeModule'),strcat(pwd,'\Classifier'),'-end');
 savepath;
 
-% Reading image files from folders
-f = dir('Material/Healthy/*.jpg');
-fd = dir('Material/Diseased_1/*.jpg');
+%% INIT FEATURE DATASET
+% plants = initializePlanticGroups();
+% to_train(plants);
 
-% Concatenating image files into one array
-f=[f;fd];
+%% LOAD FEATURE DATASET
 
-% Creating array of image file names
-fileName = {f.name};
+load('Workspaces/plants.mat');
 
-% Allocate memory for dynamic arrays of structures h and nh.
-leaves = initializePlanticGroups();
-
-for i = 1:length(f(:))
-%% 
-    clc;
-
-    if (i <= (length(f(:))/2))
-        %%
-        % Read image of a healthy leaf of a plant from graphics file
-        he = imread(fullfile('Material/Healthy', f(i).name));
-    else
-        %%
-        % Read image of a diseased leaf of a plant from graphics file
-        he = imread(fullfile('Material/Diseased_1', f(i).name));
-    end
-    
-    stats = findGlcmStatistic(he);
-  
-    if(i <= (length(f(:))/2))
-        %%
-        leaves.h = incrementHealthyComponents(leaves.h, stats);
-    else
-        %%
-        leaves.nh1 = incrementDiseasedComponents(leaves.nh1, stats);        
-    end
-    
-    % Writing statistical characteristics to <Result/Results.xlsx> file
-    % on every loop iteration
-    %writeXlsxData(fileName,i,stats);
-
-    clear stats he;
-    close all;
-end
+% remove_Nans(plants);
 
 % leaves.h = checkStatsNan(leaves.h);
 % leaves.nh = checkStatsNan(leaves.nh);
@@ -109,18 +74,20 @@ end
 
 % sup = writeXlsxSup(numbns, leaves);
 
-%% Initializing preplotting parameters
+
+%% PLOT BLOCK
+% Initializing preplotting parameters
 marks = initializeMarks();
 plotGaussValues = initializePlotsValues();
 % plotHistValues =  initializePlotsValues();
 
 binsValue = 9; %> Number of histogram columns.
 typeApproximation = 'gauss1'; %> Type of approximation.
-coefStd = 3; %> Deviation coefficient of distribution density function.
+coefStd = 2; %> Deviation coefficient of distribution density function.
 
-%% Plot graphical results using Gaussian method
+% Plot graphical results using Gaussian method
 plotGaussValues = graphGaussSubModule(plotGaussValues, ...
-                                      leaves, ...
+                                      plants, ...
                                       typeApproximation, ...
                                       binsValue, ...
                                       coefStd);
@@ -131,8 +98,12 @@ close all;
 %                                       binsValue);
 % close all;
 
+%% ADD FEATURES
+
 marks = getMarks(marks, plotGaussValues);
 % marks = getMarks(marks, plotHistValues);
+
+average_cnt = getStdAverValue(marks);
 
 % writeXlsxAverages('Averages', marks);
 % 
@@ -140,7 +111,7 @@ marks = getMarks(marks, plotGaussValues);
 
 % writeXlsxMean(means);
 
-%% Checking sample test
+%% TEST DATASET
 tic
 groupValue = 10; %> Number of images in one group. 
 % checkSampleTest(marks, groupValue);

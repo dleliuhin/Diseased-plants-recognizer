@@ -39,22 +39,21 @@ function [oMarks] = initializeMarks()
 
 %% Code
 
-oMarks.leaves.h =      initializeSubMurks();
-oMarks.leaves.nh1 =    initializeSubMurks();
-% oMarks.leaves.nh2 =    initializeSubMurks();
-% oMarks.leaves.nh3 =    initializeSubMurks();
-% oMarks.leaves.nh4 =    initializeSubMurks();
-% oMarks.leaves.nh5 =    initializeSubMurks();
-% oMarks.leaves.nh6 =    initializeSubMurks();
-% oMarks.leaves.nh7 =    initializeSubMurks();
-% oMarks.leaves.nh8 =    initializeSubMurks();
-% oMarks.leaves.nh9 =    initializeSubMurks();
-% oMarks.leaves.nh10 =    initializeSubMurks();
-% oMarks.leaves.nh11 =    initializeSubMurks();
-% oMarks.leaves.nh12 =    initializeSubMurks();
-% oMarks.leaves.nh13 =    initializeSubMurks();
-% oMarks.leaves.nh14 =    initializeSubMurks();
-% oMarks.leaves.nh15 =    initializeSubMurks();
-
+oMarks.h =      initializeSubMurks();
+oMarks.nh1 =    initializeSubMurks();
+oMarks.nh2 =    initializeSubMurks();
+oMarks.nh3 =    initializeSubMurks();
+oMarks.nh4 =    initializeSubMurks();
+oMarks.nh5 =    initializeSubMurks();
+oMarks.nh6 =    initializeSubMurks();
+oMarks.nh7 =    initializeSubMurks();
+oMarks.nh8 =    initializeSubMurks();
+oMarks.nh9 =    initializeSubMurks();
+oMarks.nh10 =    initializeSubMurks();
+% oMarks.nh11 =    initializeSubMurks();
+% oMarks.nh12 =    initializeSubMurks();
+% oMarks.nh13 =    initializeSubMurks();
+% oMarks.nh14 =    initializeSubMurks();
+% oMarks.nh15 =    initializeSubMurks();
 
 end

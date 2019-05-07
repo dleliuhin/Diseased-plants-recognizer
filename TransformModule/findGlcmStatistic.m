@@ -39,6 +39,7 @@ function [oStats] = findGlcmStatistic(iHe)
 % 
 
 %% Code 
+kernel = [2 0; 0 2];
 
 %% Getting R, G, B, RG, RB, GB components
 % Extracting r,g,b components from image
@@ -62,20 +63,20 @@ fRB = fR - fB;
 fGB = fG - fB;
 
 % Median filtering of R, G, B components
-iHef(:, :, 1) = medfilt2(r);
-iHef(:, :, 2) = medfilt2(g);
-iHef(:, :, 3) = medfilt2(b);
+% iHef(:, :, 1) = medfilt2(r);
+% iHef(:, :, 2) = medfilt2(g);
+% iHef(:, :, 3) = medfilt2(b);
 
 %% Calculating glcm and statistics for color components
 % R,G,B (inter_channel)
 
 % Calculating the glcm matrices for R, G, B components
 % Calculating the statistical characteristics of glcm's
-glcm = graycomatrix(iHef(:, :, 1), 'Offset',[2 0; 0 2]);
+glcm = graycomatrix(fR, 'Offset', kernel);
 oStats.R = graycoprops(glcm);
-glcm = graycomatrix(iHef(:, :, 2), 'Offset',[2 0; 0 2]);
+glcm = graycomatrix(fG, 'Offset', kernel);
 oStats.G = graycoprops(glcm);
-glcm = graycomatrix(iHef(:, :, 3), 'Offset',[2 0; 0 2]);
+glcm = graycomatrix(fB, 'Offset', kernel);
 oStats.B = graycoprops(glcm);
 
 %% Calculating glcm and statistics for difference components
@@ -83,11 +84,11 @@ oStats.B = graycoprops(glcm);
 
 % Calculating the glcm matrices for RG, RB, GB components
 % Calculating the statistical characteristics of glcm's
-glcm = graycomatrix(fRG, 'Offset', [2 0; 0 2]);
+glcm = graycomatrix(fRG, 'Offset', kernel);
 oStats.RG = graycoprops(glcm);
-glcm = graycomatrix(fRB, 'Offset', [2 0; 0 2]);
+glcm = graycomatrix(fRB, 'Offset', kernel);
 oStats.RB = graycoprops(glcm);
-glcm = graycomatrix(fGB, 'Offset', [2 0; 0 2]);
+glcm = graycomatrix(fGB, 'Offset', kernel);
 oStats.GB = graycoprops(glcm);
 
 end
