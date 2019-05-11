@@ -46,8 +46,10 @@ f = dir(strcat(iPath, '*.jpg'));
 
 for i = 1:length(f(:))
     clc;
-    
+
     he = imread(fullfile(iPath, f(i).name));
+
+    he = adaptiveGammaCorrection(he);
     
     stats = findGlcmStatistic(he);
     

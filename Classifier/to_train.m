@@ -50,6 +50,6 @@ iGroup.nh10 = to_train_group('Dataset/Wheat/Train/Diseased_10/', iGroup.nh10);
 
 plants = iGroup;
 
-save('Workspaces/plants.mat', 'plants');
+% save('Workspaces/plants.mat', 'plants');
 
 end

@@ -38,6 +38,8 @@ clear;
 close all;
 
 % Adding module paths
+addpath(strcat(pwd,'\NormalizeModule'),'-end');
+savepath;
 addpath(strcat(pwd,'\TransformModule'),strcat(pwd,'\AdditionalModule'),'-end');
 savepath;
 addpath(strcat(pwd,'\GraphicalModule'),strcat(pwd,'\ReadnWriteModule'),'-end');
@@ -51,7 +53,8 @@ savepath;
 
 %% LOAD FEATURE DATASET
 
-load('Workspaces/plants.mat');
+% load('Workspaces/plants.mat');
+load('Workspaces/normalizedplants.mat');
 
 % remove_Nans(plants);
 
