@@ -1,167 +1,132 @@
-%Программа вычисления 48 статистических ключевых признаков
-%цветных текстурных изображений
-%Вычисление glcm и статистики для цветовых составляющих
-%R,G,B (inter_channel)и для разностных составляющих R-G, R-B, G-B, (intra_channel)
-%полученных путем вычитания матриц R, B, G
+function main()
+%% MAIN 
+% Plant disease recognition program from images.
+% 
+% * Syntax
+%
+% [] = MAIN()
+% 
+% * Examples: 
+% 
+% Provide sample usage code here.
+% 
+% * See also: 
+%
+% INITIALIZEPLANTICGROUPS, FINDGLCMSTATISTIC, INITIALIZEMARKS, 
+% INITIALIZEPLOTSVALUES, GRAPHGAUSSSUBMODULE, GETMARKS, 
+% WRITEXLSXAVERAGES, WRITEXLSXEACHDATA, CHECKSAMPLETEST
+%           
+% * Authors: Dmitrii Leliuhin, Vladimir Tutigin
+% * Email: dleliuhin@mail.ru 
+% * Date: 17/07/2018 15:30:25 
+% * Version: 1.0 $ 
+% * Requirements: PCWIN64, MatLab R2016a  
+% 
+% * Warning: 
+% 
+% # Program works stable only for Windows.
+% # Change adding subfolders given your system configurations.
+% 
+% * TODO: 
+% 
+% # Change parsing method for images from directories.
+% 
 
+%% Code 
 clc;
 clear;
 close all;
 
-%This works only for Windows!!!
-%Change adding subfolders as your system configurations
+% Adding module paths
+addpath(strcat(pwd,'\NormalizeModule'),'-end');
+savepath;
 addpath(strcat(pwd,'\TransformModule'),strcat(pwd,'\AdditionalModule'),'-end');
 savepath;
 addpath(strcat(pwd,'\GraphicalModule'),strcat(pwd,'\ReadnWriteModule'),'-end');
 savepath;
+addpath(strcat(pwd,'\InitializeModule'),strcat(pwd,'\Classifier'),'-end');
+savepath;
 
-f = dir('Material/Healthy/*.jpg');
-fd = dir('Material/Diseased/*.jpg');
+%% INIT FEATURE DATASET
+plants = initializePlanticGroups();
+to_train(plants);
 
-f=[f;fd];
+%% LOAD FEATURE DATASET
 
-fileName = {f.name};
+% load('Workspaces/plants.mat');
+% load('Workspaces/normalizedplants.mat');
+load('Workspaces/cutPlants.mat');
 
-[h,nh] = initialStats();
+% remove_Nans(plants);
 
-for i = 1:length(f(:))
-
-clc;
-
-%Обрабатываться будут изображения mini, полученные из полноформатных
-%изображений путем масштабирования с уменьшением размерности 
-%примерно в 10 раз, чтобы размерность изображения mini
-%была около 100*300 пикселов
-%При масштабировании нужно стремиться, чтобы размерность изображения 
-% листа растения на всех изображениях была бы одной и той же
-
-if (i <= (length(f(:))/2))
-    he = imread(fullfile('Material/Healthy',f(i).name));
-else
-    he = imread(fullfile('Material/Diseased',f(i).name));%растение
-end
-
-%he = imrotate(he, 90);
-%he = imread('1h_mini.bmp');%здоровое растение
-%he = imresize(he,[255 255]);
-%he=imcrop(he);%вырезание области, содержащей только анализируемый лист
-%(или его часть), для того, чтобы минимизировать фоновую область
-
-%выделение r,g,b компонент
-r=he(:,:,1);
-g=he(:,:,2);
-b=he(:,:,3);
-
-%вычисление inter_channel_matrix
-rgb_image=im2double(he);%преобразование элементов изображения в формат double
-figure, imshow(he);
-
-fR = rgb_image (:, :, 1);
-fG = rgb_image (:, :, 2);
-fB = rgb_image (:, :, 3);
-
-%вычисление intra_channel_matrix путем вычитания матриц
-fRG=fR-fG;
-fRB=fR-fB;
-fGB=fG-fB;
-
-% figure;subplot(2,2,1);hist(fR,11);title('fR');
-%        subplot(2,2,2);hist(fG,11);title('fG');
-%        subplot(2,2,3);hist(fB,11);title('fB');
-
-hef(:,:,1)=medfilt2(r);%медианная фильтрация
-hef(:,:,2)=medfilt2(g);
-hef(:,:,3)=medfilt2(b);
-
-%адативная эквализация гистограммы
-% he1(:,:,1)=adapthisteq(hef(:,:,1),'cliplimit',0.02,'Distribution','rayleigh');
-% he1(:,:,2)=adapthisteq(hef(:,:,2),'cliplimit',0.02,'Distribution','rayleigh');
-% he1(:,:,3)=adapthisteq(hef(:,:,3),'cliplimit',0.02,'Distribution','rayleigh');
-% 
-% featurecolor.2R= imhist(he1(:,:,1)); 
-% featurecolor.2G= imhist(he1(:,:,2)); 
-% featurecolor.2B= imhist(he1(:,:,3)); 
-% figure,subplot(2,2,1);hist(featurecolor2R,9);title('featurecolor2R');
-%        subplot(2,2,2);hist(featurecolor2G,9);title('featurecolor2G');
-%        subplot(2,2,3);hist(featurecolor2B,9);title('featurecolor2B');
-
-% heff(:,:,1)=adapthisteq(r,'cliplimit',0.02,'Distribution','rayleigh');
-% heff(:,:,2)=adapthisteq(g,'cliplimit',0.02,'Distribution','rayleigh');
-% heff(:,:,3)=adapthisteq(b,'cliplimit',0.02,'Distribution','rayleigh');
-
-% figure,subplot(2,3,1);imshow(he);title('orginal image');
-%        subplot(2,3,2);imshow(hef);title(' Median fliter');
-%        subplot(2,3,3);imshow(heff);title(' adaptive Histogram Equalization');
-%        subplot(2,3,5);imshow(he1);title('Median fliter + adaptive Histogram Equalization');
-
-% adapthisteqR= imhist(heff(:,:,1)); 
-% adapthisteqG= imhist(heff(:,:,2)); 
-% adapthisteqB= imhist(heff(:,:,3)); 
-% figure,subplot(2,2,1);hist(adapthisteqR,9);title('adapthisteqR');
-%        subplot(2,2,2);hist(adapthisteqG,9);title('adapthisteqG');
-%        subplot(2,2,3);hist(adapthisteqB,9);title('adapthisteqB');
-     
-% figure,subplot(2,2,1);imshow(he1(:,:,1));title('adapthisteq-R');
-%        subplot(2,2,2);imshow(he1(:,:,1));title('adapthisteq-G');
-%        subplot(2,2,3);imshow(he1(:,:,1));title('adapthisteq-B');
-
-%Вычисление glcm и статистики для цветовых составляющих
-%R,G,B (inter_channel)
-glcm = graycomatrix(hef(:,:,1), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.R = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(hef(:,:,2), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.G = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(hef(:,:,3), 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.B = graycoprops(glcm);%вычисление статистических характеристик glcm
-
-%Вычисление glcm и статистики для разностных составляющих RG, RB, GB, (intra_channel)
-%полученных путем вычитания матриц fR, fB, fG
-glcm = graycomatrix(fRG, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.RG = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(fRB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.RB = graycoprops(glcm);%вычисление статистических характеристик glcm
-glcm = graycomatrix(fGB, 'Offset',[2 0;0 2]);%вычисление матрицы glcm
-stats.GB = graycoprops(glcm);%вычисление статистических характеристик glcms   
-
-if(i <= (length(f(:))/2))        
-    h=rewriteHealthy(h,stats);
-else
-    nh=rewriteDiseased(nh,stats);        
-end
-
-%writeXlsxData(fileName,i,stats);
-
-% pause;
-clear stats r g b rgb_image;
-clear fR fG fB fRG fRB fGB glcm;
-clear he hef;
-close all;
-end
-
-[h,nh] = checkStatsNan(h,nh);
+% leaves.h = checkStatsNan(leaves.h);
+% leaves.nh = checkStatsNan(leaves.nh);
 
 %-----------------------Finding averages attributes-------------------
 
-averAtrb(h,nh);
+% averAtrb(leaves.h, leaves.nh);
 
-%----------------------Aligning ranges of arrays--------------------
+%-----------------------Finding mean and SKO of arrays----------------
 
-%[h,nh]=alignRanges(h,nh);
+% writeMeanSko(leaves.h, leaves.nh);
 
-%Оптимальное кол-во столбцов на гистограмме
-numbns = 13;
+%----------------------Aligning ranges of arrays----------------------
+
+% leaves = alignRanges(leaves);
+
 %-----------------------Finding supremums--------------------------------
 
-sup=writeXlsxSup(numbns,h,nh);
+% sup = writeXlsxSup(numbns, leaves);
 
-numbns = 5;
-typeApproximation = 'gauss1';
-coefStd = 1;
 
-%Plot graphical results using Gaussian method
-graphGaussModule(h,nh,typeApproximation,numbns,coefStd)
+%% PLOT BLOCK
+% Initializing preplotting parameters
+marks = initializeMarks();
+plotGaussValues = initializePlotsValues();
+% plotHistValues =  initializePlotsValues();
+
+binsValue = 9; %> Number of histogram columns.
+typeApproximation = 'gauss1'; %> Type of approximation.
+coefStd = 2; %> Deviation coefficient of distribution density function.
+
+% Plot graphical results using Gaussian method
+plotGaussValues = graphGaussSubModule(plotGaussValues, ...
+                                      plants, ...
+                                      typeApproximation, ...
+                                      binsValue, ...
+                                      coefStd);
+close all;
+ 
+% plotHistValues = graphHistogramModule(leaves, ...
+%                                       plotHistValues, ...
+%                                       binsValue);
+% close all;
+
+%% ADD FEATURES
+
+load('Workspaces/cutMarks.mat');
+marks = getMarks(marks, plotGaussValues);
+% marks = getMarks(marks, plotHistValues);
+
+average_cnt = getStdAverValue(marks);
+
+% writeXlsxAverages('Averages', marks);
+% 
+% writeXlsxEachData('RecRes', strtok(fileName(:), '.'), leaves);
+
+% writeXlsxMean(means);
+
+%% TEST DATASET
+tic
+groupValue = average_cnt^2; %> Number of images in one group. 
+
+to_test('Dataset/Wheat/Test/All/', marks, groupValue);
+
+% checkSampleTest(marks, groupValue);
+toc
+% Plot graphical results using Spline method
+% graphSplineModule(h,nh,numbns);
+
 close all;
 
-%Plot graphical results using Spline method
-graphSplineModule(h,nh,numbns)
-close all;
+end

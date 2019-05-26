@@ -1,7 +1,15 @@
+###########
+# Windows #
+###########
+
+# Folders of modules
 /Material
+/Dataset
 /Plots
 /Result
 /Workspaces
+/html
+
 
 *.rar
 *.jpg
