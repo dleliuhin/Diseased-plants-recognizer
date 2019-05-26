@@ -49,7 +49,7 @@ for i = 1:length(f(:))
 
     he = imread(fullfile(iPath, f(i).name));
 
-    he = adaptiveGammaCorrection(he);
+%     he = adaptiveGammaCorrection(he);
     
     stats = findGlcmStatistic(he);
     

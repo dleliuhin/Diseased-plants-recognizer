@@ -48,13 +48,14 @@ addpath(strcat(pwd,'\InitializeModule'),strcat(pwd,'\Classifier'),'-end');
 savepath;
 
 %% INIT FEATURE DATASET
-% plants = initializePlanticGroups();
-% to_train(plants);
+plants = initializePlanticGroups();
+to_train(plants);
 
 %% LOAD FEATURE DATASET
 
 % load('Workspaces/plants.mat');
-load('Workspaces/normalizedplants.mat');
+% load('Workspaces/normalizedplants.mat');
+load('Workspaces/cutPlants.mat');
 
 % remove_Nans(plants);
 
@@ -103,6 +104,7 @@ close all;
 
 %% ADD FEATURES
 
+load('Workspaces/cutMarks.mat');
 marks = getMarks(marks, plotGaussValues);
 % marks = getMarks(marks, plotHistValues);
 
@@ -116,7 +118,10 @@ average_cnt = getStdAverValue(marks);
 
 %% TEST DATASET
 tic
-groupValue = 10; %> Number of images in one group. 
+groupValue = average_cnt^2; %> Number of images in one group. 
+
+to_test('Dataset/Wheat/Test/All/', marks, groupValue);
+
 % checkSampleTest(marks, groupValue);
 toc
 % Plot graphical results using Spline method

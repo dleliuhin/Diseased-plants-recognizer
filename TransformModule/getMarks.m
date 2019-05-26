@@ -74,6 +74,6 @@ marks.nh9 = getAllIndicators(marks.nh9, plotValues.nh9);
 
 marks.nh10 = getAllIndicators(marks.nh10, plotValues.nh10);
 
-save('Workspaces/marks.mat', 'marks');
+save('Workspaces/cutMarks.mat', 'marks');
 
 end
