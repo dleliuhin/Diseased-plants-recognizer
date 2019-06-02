@@ -1,0 +1,312 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeResToTxt</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeResToTxt.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> [resh, resnh] = writeResToTxt(fileres, stats, mean, imagename, atribute, count, resh, resnh)
+    <span class="comment">%R</span>
+    [res, count] = checkResultPercents(double(mean.h.R.Contrast), double(stats.R.Contrast(1)), double(mean.nh.R.Contrast), count);
+    fprintf(<span class="string">'%s | \t %d \t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        imagename, atribute, sprintf(<span class="string">'R.Contrast    '</span>), double(mean.h.R.Contrast), double(stats.R.Contrast(1)), double(mean.nh.R.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.R.Correlation), double(stats.R.Correlation(1)), double(mean.nh.R.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'R.Correlation '</span>), double(mean.h.R.Correlation), double(stats.R.Correlation(1)), double(mean.nh.R.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.R.Energy), double(stats.R.Energy(1)), double(mean.nh.R.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'R.Energy      '</span>), double(mean.h.R.Energy), double(stats.R.Energy(1)), double(mean.nh.R.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.R.Homogeneity), double(stats.R.Homogeneity(1)), double(mean.nh.R.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'R.Homogeneity '</span>), double(mean.h.R.Homogeneity), double(stats.R.Homogeneity(1)), double(mean.nh.R.Homogeneity), res);
+
+    <span class="comment">%G</span>
+    [res, count] = checkResultPercents(double(mean.h.G.Contrast), double(stats.G.Contrast(1)), double(mean.nh.G.Contrast), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'G.Contrast    '</span>), double(mean.h.G.Contrast), double(stats.G.Contrast(1)), double(mean.nh.G.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.G.Correlation), double(stats.G.Correlation(1)), double(mean.nh.G.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'G.Correlation '</span>), double(mean.h.G.Correlation), double(stats.G.Correlation(1)), double(mean.nh.G.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.G.Energy), double(stats.G.Energy(1)), double(mean.nh.G.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'G.Energy      '</span>), double(mean.h.G.Energy), double(stats.G.Energy(1)), double(mean.nh.G.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.G.Homogeneity), double(stats.G.Homogeneity(1)), double(mean.nh.G.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'G.Homogeneity '</span>), double(mean.h.G.Homogeneity), double(stats.G.Homogeneity(1)), double(mean.nh.G.Homogeneity), res);
+
+    <span class="comment">%B</span>
+    [res, count] = checkResultPercents(double(mean.h.B.Contrast), double(stats.B.Contrast(1)), double(mean.nh.B.Contrast), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'B.Contrast    '</span>), double(mean.h.B.Contrast), double(stats.B.Contrast(1)), double(mean.nh.B.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.B.Correlation), double(stats.B.Correlation(1)), double(mean.nh.B.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'B.Correlation '</span>), double(mean.h.B.Correlation), double(stats.B.Correlation(1)), double(mean.nh.B.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.B.Energy), double(stats.B.Energy(1)), double(mean.nh.B.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'B.Energy      '</span>), double(mean.h.B.Energy), double(stats.B.Energy(1)), double(mean.nh.B.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.B.Homogeneity), double(stats.B.Homogeneity(1)), double(mean.nh.B.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'B.Homogeneity '</span>), double(mean.h.B.Homogeneity), double(stats.B.Homogeneity(1)), double(mean.nh.B.Homogeneity), res);
+
+    <span class="comment">%RG</span>
+    [res, count] = checkResultPercents(double(mean.h.RG.Contrast), double(stats.RG.Contrast(1)), double(mean.nh.RG.Contrast), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RG.Contrast   '</span>), double(mean.h.RG.Contrast), double(stats.RG.Contrast(1)), double(mean.nh.RG.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RG.Correlation), double(stats.RG.Correlation(1)), double(mean.nh.RG.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RG.Correlation'</span>), double(mean.h.RG.Correlation), double(stats.RG.Correlation(1)), double(mean.nh.RG.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RG.Energy), double(stats.RG.Energy(1)), double(mean.nh.RG.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RG.Energy     '</span>), double(mean.h.RG.Energy), double(stats.RG.Energy(1)), double(mean.nh.RG.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RG.Homogeneity), double(stats.RG.Homogeneity(1)), double(mean.nh.RG.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RG.Homogeneity'</span>), double(mean.h.RG.Homogeneity), double(stats.RG.Homogeneity(1)), double(mean.nh.RG.Homogeneity), res);
+
+    <span class="comment">%RB</span>
+    [res, count] = checkResultPercents(double(mean.h.RB.Contrast), double(stats.RB.Contrast(1)), double(mean.nh.RB.Contrast), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RB.Contrast   '</span>), double(mean.h.RB.Contrast), double(stats.RB.Contrast(1)), double(mean.nh.RB.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RB.Correlation), double(stats.RB.Correlation(1)), double(mean.nh.RB.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RB.Correlation'</span>), double(mean.h.RB.Correlation), double(stats.RB.Correlation(1)), double(mean.nh.RB.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RB.Energy), double(stats.RB.Energy(1)), double(mean.nh.RB.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RB.Energy     '</span>), double(mean.h.RB.Energy), double(stats.RB.Energy(1)), double(mean.nh.RB.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.RB.Homogeneity), double(stats.RB.Homogeneity(1)), double(mean.nh.RB.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'RB.Homogeneity'</span>), double(mean.h.RB.Homogeneity), double(stats.RB.Homogeneity(1)), double(mean.nh.RB.Homogeneity), res);
+
+    <span class="comment">%GB</span>
+    [res, count] = checkResultPercents(double(mean.h.GB.Contrast), double(stats.GB.Contrast(1)), double(mean.nh.GB.Contrast), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'GB.Contrast   '</span>), double(mean.h.GB.Contrast), double(stats.GB.Contrast(1)), double(mean.nh.GB.Contrast), res);
+
+    [res, count] = checkResultPercents(double(mean.h.GB.Correlation), double(stats.GB.Correlation(1)), double(mean.nh.GB.Correlation), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'GB.Correlation'</span>), double(mean.h.GB.Correlation), double(stats.GB.Correlation(1)), double(mean.nh.GB.Correlation), res);
+
+    [res, count] = checkResultPercents(double(mean.h.GB.Energy), double(stats.GB.Energy(1)), double(mean.nh.GB.Energy), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'GB.Energy     '</span>), double(mean.h.GB.Energy), double(stats.GB.Energy(1)), double(mean.nh.GB.Energy), res);
+
+    [res, count] = checkResultPercents(double(mean.h.GB.Homogeneity), double(stats.GB.Homogeneity(1)), double(mean.nh.GB.Homogeneity), count);
+    fprintf(<span class="string">'\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+        sprintf(<span class="string">'GB.Homogeneity'</span>), double(mean.h.GB.Homogeneity), double(stats.GB.Homogeneity(1)), double(mean.nh.GB.Homogeneity), res);
+
+    hCountPercent = double((count.h)./24*100);
+    nhCountPercent = double((count.nh)./24*100);
+    <span class="keyword">if</span> (hCountPercent &gt; nhCountPercent)
+        finalResult = 1;
+        resh = resh + 1;
+    <span class="keyword">elseif</span> (hCountPercent &lt; nhCountPercent)
+        finalResult = 0;
+        resnh = resnh + 1;
+    <span class="keyword">elseif</span> (hCountPercent == nhCountPercent)
+        finalResult = <span class="string">'undefined'</span>;
+    <span class="keyword">end</span>
+
+    fprintf(<span class="string">'Healthy: %3.2f%% , Ill: %3.2f%% , Verdict atribute: %s \n'</span>, hCountPercent, nhCountPercent, num2str(finalResult));
+    fprintf(<span class="string">'\n'</span>);
+
+    clear <span class="string">finalResult</span> <span class="string">hCountPercent</span> <span class="string">nhCountPercent</span>;
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [resh, resnh] = writeResToTxt(fileres, stats, mean, imagename, atribute, count, resh, resnh)
+    %R
+    [res, count] = checkResultPercents(double(mean.h.R.Contrast), double(stats.R.Contrast(1)), double(mean.nh.R.Contrast), count);
+    fprintf('%s | \t %d \t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        imagename, atribute, sprintf('R.Contrast    '), double(mean.h.R.Contrast), double(stats.R.Contrast(1)), double(mean.nh.R.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.R.Correlation), double(stats.R.Correlation(1)), double(mean.nh.R.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('R.Correlation '), double(mean.h.R.Correlation), double(stats.R.Correlation(1)), double(mean.nh.R.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.R.Energy), double(stats.R.Energy(1)), double(mean.nh.R.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('R.Energy      '), double(mean.h.R.Energy), double(stats.R.Energy(1)), double(mean.nh.R.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.R.Homogeneity), double(stats.R.Homogeneity(1)), double(mean.nh.R.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('R.Homogeneity '), double(mean.h.R.Homogeneity), double(stats.R.Homogeneity(1)), double(mean.nh.R.Homogeneity), res);    
+    
+    %G
+    [res, count] = checkResultPercents(double(mean.h.G.Contrast), double(stats.G.Contrast(1)), double(mean.nh.G.Contrast), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('G.Contrast    '), double(mean.h.G.Contrast), double(stats.G.Contrast(1)), double(mean.nh.G.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.G.Correlation), double(stats.G.Correlation(1)), double(mean.nh.G.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('G.Correlation '), double(mean.h.G.Correlation), double(stats.G.Correlation(1)), double(mean.nh.G.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.G.Energy), double(stats.G.Energy(1)), double(mean.nh.G.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('G.Energy      '), double(mean.h.G.Energy), double(stats.G.Energy(1)), double(mean.nh.G.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.G.Homogeneity), double(stats.G.Homogeneity(1)), double(mean.nh.G.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('G.Homogeneity '), double(mean.h.G.Homogeneity), double(stats.G.Homogeneity(1)), double(mean.nh.G.Homogeneity), res);
+    
+    %B
+    [res, count] = checkResultPercents(double(mean.h.B.Contrast), double(stats.B.Contrast(1)), double(mean.nh.B.Contrast), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('B.Contrast    '), double(mean.h.B.Contrast), double(stats.B.Contrast(1)), double(mean.nh.B.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.B.Correlation), double(stats.B.Correlation(1)), double(mean.nh.B.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('B.Correlation '), double(mean.h.B.Correlation), double(stats.B.Correlation(1)), double(mean.nh.B.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.B.Energy), double(stats.B.Energy(1)), double(mean.nh.B.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('B.Energy      '), double(mean.h.B.Energy), double(stats.B.Energy(1)), double(mean.nh.B.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.B.Homogeneity), double(stats.B.Homogeneity(1)), double(mean.nh.B.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('B.Homogeneity '), double(mean.h.B.Homogeneity), double(stats.B.Homogeneity(1)), double(mean.nh.B.Homogeneity), res);
+    
+    %RG
+    [res, count] = checkResultPercents(double(mean.h.RG.Contrast), double(stats.RG.Contrast(1)), double(mean.nh.RG.Contrast), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RG.Contrast   '), double(mean.h.RG.Contrast), double(stats.RG.Contrast(1)), double(mean.nh.RG.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RG.Correlation), double(stats.RG.Correlation(1)), double(mean.nh.RG.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RG.Correlation'), double(mean.h.RG.Correlation), double(stats.RG.Correlation(1)), double(mean.nh.RG.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RG.Energy), double(stats.RG.Energy(1)), double(mean.nh.RG.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RG.Energy     '), double(mean.h.RG.Energy), double(stats.RG.Energy(1)), double(mean.nh.RG.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RG.Homogeneity), double(stats.RG.Homogeneity(1)), double(mean.nh.RG.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RG.Homogeneity'), double(mean.h.RG.Homogeneity), double(stats.RG.Homogeneity(1)), double(mean.nh.RG.Homogeneity), res);
+    
+    %RB
+    [res, count] = checkResultPercents(double(mean.h.RB.Contrast), double(stats.RB.Contrast(1)), double(mean.nh.RB.Contrast), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RB.Contrast   '), double(mean.h.RB.Contrast), double(stats.RB.Contrast(1)), double(mean.nh.RB.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RB.Correlation), double(stats.RB.Correlation(1)), double(mean.nh.RB.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RB.Correlation'), double(mean.h.RB.Correlation), double(stats.RB.Correlation(1)), double(mean.nh.RB.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RB.Energy), double(stats.RB.Energy(1)), double(mean.nh.RB.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RB.Energy     '), double(mean.h.RB.Energy), double(stats.RB.Energy(1)), double(mean.nh.RB.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.RB.Homogeneity), double(stats.RB.Homogeneity(1)), double(mean.nh.RB.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('RB.Homogeneity'), double(mean.h.RB.Homogeneity), double(stats.RB.Homogeneity(1)), double(mean.nh.RB.Homogeneity), res);
+    
+    %GB
+    [res, count] = checkResultPercents(double(mean.h.GB.Contrast), double(stats.GB.Contrast(1)), double(mean.nh.GB.Contrast), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('GB.Contrast   '), double(mean.h.GB.Contrast), double(stats.GB.Contrast(1)), double(mean.nh.GB.Contrast), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.GB.Correlation), double(stats.GB.Correlation(1)), double(mean.nh.GB.Correlation), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('GB.Correlation'), double(mean.h.GB.Correlation), double(stats.GB.Correlation(1)), double(mean.nh.GB.Correlation), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.GB.Energy), double(stats.GB.Energy(1)), double(mean.nh.GB.Energy), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('GB.Energy     '), double(mean.h.GB.Energy), double(stats.GB.Energy(1)), double(mean.nh.GB.Energy), res);
+    
+    [res, count] = checkResultPercents(double(mean.h.GB.Homogeneity), double(stats.GB.Homogeneity(1)), double(mean.nh.GB.Homogeneity), count);
+    fprintf('\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %d \n', ...
+        sprintf('GB.Homogeneity'), double(mean.h.GB.Homogeneity), double(stats.GB.Homogeneity(1)), double(mean.nh.GB.Homogeneity), res);
+    
+    hCountPercent = double((count.h)./24*100);
+    nhCountPercent = double((count.nh)./24*100);
+    if (hCountPercent > nhCountPercent)
+        finalResult = 1;
+        resh = resh + 1;
+    elseif (hCountPercent < nhCountPercent)
+        finalResult = 0;
+        resnh = resnh + 1;
+    elseif (hCountPercent == nhCountPercent)
+        finalResult = 'undefined';
+    end
+    
+    fprintf('Healthy: %3.2f%% , Ill: %3.2f%% , Verdict atribute: %s \n', hCountPercent, nhCountPercent, num2str(finalResult));
+    fprintf('\n');
+    
+    clear finalResult hCountPercent nhCountPercent;
+end
+##### SOURCE END #####
+--></body></html>

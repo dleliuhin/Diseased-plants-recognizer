@@ -1,0 +1,281 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>main</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="main.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">MAIN</a></li><li><a href="#3">Code</a></li><li><a href="#4">INIT FEATURE DATASET</a></li><li><a href="#5">LOAD FEATURE DATASET</a></li><li><a href="#6">PLOT BLOCK</a></li><li><a href="#7">ADD FEATURES</a></li><li><a href="#8">TEST DATASET</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> main()
+</pre><h2>MAIN<a name="2"></a></h2><p>Plant's leaf disease recognition program from images.</p><div><ul><li>Syntax</li></ul></div><p>[] = MAIN()</p><div><ul><li>Examples:</li></ul></div><p>Provide sample usage code here.</p><div><ul><li>See also:</li></ul></div><p>INITIALIZEPLANTICGROUPS, TO_TRAIN, INITIALIZEMARKS, INITIALIZEPLOTSVALUES, GRAPHGAUSSSUBMODULE, GETMARKS, GETSTDAVERVALUE, TO_TEST</p><div><ul><li>Authors: Dmitrii Leliuhin, Vladimir Tutigin</li><li>Email: <a href="mailto:dleliuhin@gmail.com">dleliuhin@gmail.com</a></li><li>Date: 17/07/2018 15:30:25</li><li>Version: 1.0 $</li><li>Requirements: PCWIN64, MatLab R2016a</li></ul></div><div><ul><li>Warning:</li></ul></div><div><ol><li>Program works stable only for Windows.</li><li>Change adding subfolders given your system configurations.</li></ol></div><div><ul><li>TODO:</li></ul></div><div><ol><li>Change parsing method for images from directories.</li></ol></div><h2>Code<a name="3"></a></h2><pre class="codeinput">clc;
+clear;
+close <span class="string">all</span>;
+
+<span class="comment">% Adding module paths</span>
+addpath(strcat(pwd,<span class="string">'\NormalizeModule'</span>),<span class="string">'-end'</span>);
+savepath;
+addpath(strcat(pwd,<span class="string">'\TransformModule'</span>),strcat(pwd,<span class="string">'\AdditionalModule'</span>),<span class="string">'-end'</span>);
+savepath;
+addpath(strcat(pwd,<span class="string">'\GraphicalModule'</span>),strcat(pwd,<span class="string">'\ReadnWriteModule'</span>),<span class="string">'-end'</span>);
+savepath;
+addpath(strcat(pwd,<span class="string">'\InitializeModule'</span>),strcat(pwd,<span class="string">'\Classifier'</span>),<span class="string">'-end'</span>);
+savepath;
+</pre><h2>INIT FEATURE DATASET<a name="4"></a></h2><pre class="codeinput">plants = initializePlanticGroups();
+to_train(plants);
+</pre><h2>LOAD FEATURE DATASET<a name="5"></a></h2><pre class="codeinput"><span class="comment">% load('Workspaces/plants.mat');</span>
+<span class="comment">% load('Workspaces/normalizedplants.mat');</span>
+<span class="comment">% load('Workspaces/cutPlants.mat');</span>
+
+<span class="comment">% remove_Nans(plants);</span>
+
+<span class="comment">%-----------------------Finding averages attributes-------------------</span>
+
+<span class="comment">% averAtrb(leaves.h, leaves.nh);</span>
+
+<span class="comment">%-----------------------Finding mean and SKO of arrays----------------</span>
+
+<span class="comment">% writeMeanSko(leaves.h, leaves.nh);</span>
+
+<span class="comment">%----------------------Aligning ranges of arrays----------------------</span>
+
+<span class="comment">% leaves = alignRanges(leaves);</span>
+
+<span class="comment">%-----------------------Finding supremums--------------------------------</span>
+
+<span class="comment">% sup = writeXlsxSup(numbns, leaves);</span>
+</pre><h2>PLOT BLOCK<a name="6"></a></h2><p>Initializing preplotting parameters</p><pre class="codeinput">marks = initializeMarks();
+plotGaussValues = initializePlotsValues();
+<span class="comment">% plotHistValues =  initializePlotsValues();</span>
+
+binsValue = 9; <span class="comment">%&gt; Number of histogram columns.</span>
+typeApproximation = <span class="string">'gauss1'</span>; <span class="comment">%&gt; Type of approximation.</span>
+coefStd = 2; <span class="comment">%&gt; Deviation coefficient of distribution density function.</span>
+
+<span class="comment">% Plot graphical results using Gaussian method</span>
+plotGaussValues = graphGaussSubModule(plotGaussValues, <span class="keyword">...</span>
+                                      plants, <span class="keyword">...</span>
+                                      typeApproximation, <span class="keyword">...</span>
+                                      binsValue, <span class="keyword">...</span>
+                                      coefStd);
+close <span class="string">all</span>;
+
+<span class="comment">% plotHistValues = graphHistogramModule(leaves, ...</span>
+<span class="comment">%                                       plotHistValues, ...</span>
+<span class="comment">%                                       binsValue);</span>
+<span class="comment">% close all;</span>
+</pre><h2>ADD FEATURES<a name="7"></a></h2><pre class="codeinput"><span class="comment">% load('Workspaces/cutMarks.mat');</span>
+marks = getMarks(marks, plotGaussValues);
+<span class="comment">% marks = getMarks(marks, plotHistValues);</span>
+
+average_cnt = getStdAverValue(marks);
+
+<span class="comment">% writeXlsxAverages('Averages', marks);</span>
+<span class="comment">%</span>
+<span class="comment">% writeXlsxEachData('RecRes', strtok(fileName(:), '.'), leaves);</span>
+
+<span class="comment">% writeXlsxMean(means);</span>
+</pre><h2>TEST DATASET<a name="8"></a></h2><pre class="codeinput">tic
+groupValue = average_cnt^2; <span class="comment">%&gt; Number of images in one group.</span>
+
+to_test(<span class="string">'Dataset/Wheat/Test/All/'</span>, marks, groupValue);
+
+<span class="comment">% checkSampleTest(marks, groupValue);</span>
+toc
+<span class="comment">% Plot graphical results using Spline method</span>
+<span class="comment">% graphSplineModule(h,nh,numbns);</span>
+
+close <span class="string">all</span>;
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function main()
+%% MAIN 
+% Plant's leaf disease recognition program from images.
+% 
+% * Syntax
+%
+% [] = MAIN()
+% 
+% * Examples: 
+% 
+% Provide sample usage code here.
+% 
+% * See also: 
+%
+% INITIALIZEPLANTICGROUPS, TO_TRAIN, INITIALIZEMARKS, 
+% INITIALIZEPLOTSVALUES, GRAPHGAUSSSUBMODULE, GETMARKS, 
+% GETSTDAVERVALUE, TO_TEST
+%           
+% * Authors: Dmitrii Leliuhin, Vladimir Tutigin
+% * Email: dleliuhin@gmail.com
+% * Date: 17/07/2018 15:30:25 
+% * Version: 1.0 $ 
+% * Requirements: PCWIN64, MatLab R2016a  
+% 
+% * Warning: 
+% 
+% # Program works stable only for Windows.
+% # Change adding subfolders given your system configurations.
+% 
+% * TODO: 
+% 
+% # Change parsing method for images from directories.
+% 
+
+%% Code 
+clc;
+clear;
+close all;
+
+% Adding module paths
+addpath(strcat(pwd,'\NormalizeModule'),'-end');
+savepath;
+addpath(strcat(pwd,'\TransformModule'),strcat(pwd,'\AdditionalModule'),'-end');
+savepath;
+addpath(strcat(pwd,'\GraphicalModule'),strcat(pwd,'\ReadnWriteModule'),'-end');
+savepath;
+addpath(strcat(pwd,'\InitializeModule'),strcat(pwd,'\Classifier'),'-end');
+savepath;
+
+%% INIT FEATURE DATASET
+plants = initializePlanticGroups();
+to_train(plants);
+
+%% LOAD FEATURE DATASET
+
+% load('Workspaces/plants.mat');
+% load('Workspaces/normalizedplants.mat');
+% load('Workspaces/cutPlants.mat');
+
+% remove_Nans(plants);
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-Finding averages attributesREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-
+
+% averAtrb(leaves.h, leaves.nh);
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-Finding mean and SKO of arraysREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% writeMeanSko(leaves.h, leaves.nh);
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHAligning ranges of arraysREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% leaves = alignRanges(leaves);
+
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-Finding supremumsREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+
+% sup = writeXlsxSup(numbns, leaves);
+
+
+%% PLOT BLOCK
+% Initializing preplotting parameters
+marks = initializeMarks();
+plotGaussValues = initializePlotsValues();
+% plotHistValues =  initializePlotsValues();
+
+binsValue = 9; %> Number of histogram columns.
+typeApproximation = 'gauss1'; %> Type of approximation.
+coefStd = 2; %> Deviation coefficient of distribution density function.
+
+% Plot graphical results using Gaussian method
+plotGaussValues = graphGaussSubModule(plotGaussValues, ...
+                                      plants, ...
+                                      typeApproximation, ...
+                                      binsValue, ...
+                                      coefStd);
+close all;
+ 
+% plotHistValues = graphHistogramModule(leaves, ...
+%                                       plotHistValues, ...
+%                                       binsValue);
+% close all;
+
+%% ADD FEATURES
+
+% load('Workspaces/cutMarks.mat');
+marks = getMarks(marks, plotGaussValues);
+% marks = getMarks(marks, plotHistValues);
+
+average_cnt = getStdAverValue(marks);
+
+% writeXlsxAverages('Averages', marks);
+% 
+% writeXlsxEachData('RecRes', strtok(fileName(:), '.'), leaves);
+
+% writeXlsxMean(means);
+
+%% TEST DATASET
+tic
+groupValue = average_cnt^2; %> Number of images in one group. 
+
+to_test('Dataset/Wheat/Test/All/', marks, groupValue);
+
+% checkSampleTest(marks, groupValue);
+toc
+% Plot graphical results using Spline method
+% graphSplineModule(h,nh,numbns);
+
+close all;
+
+end
+##### SOURCE END #####
+--></body></html>

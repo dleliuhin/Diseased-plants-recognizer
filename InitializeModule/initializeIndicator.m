@@ -9,7 +9,7 @@ function [oIndicatorName] = initializeIndicator()
 % * Output 
 % 
 % -- oIndicatorName - structure of statistic "average" or indicator
-%                    with allocated memory
+%                     with allocated memory.
 % 
 % * Examples: 
 % 

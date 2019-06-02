@@ -1,18 +1,15 @@
 function [oTable] = initializeDecisSubTable()
 %% INITIALIZEDECISSUBTABLE 
-% Summary of this function goes here. 
+% Declare substructures to keep if values are in range, delta and result.
 % 
 % * Syntax 
 % 
-% [OUTPUTARGS] = INITIALIZEDECISSUBTABLE(INPUTARGS)
-% 
-% * Input 
-% 
-% -- INPUTARGS -  
+% [OTABLE] = INITIALIZEDECISSUBTABLE()
 % 
 % * Output 
 % 
-% -- OUTPUTARGS -  
+% -- OUTPUTARGS - filled struct contained if values are in range, delta
+%                 and result.
 % 
 % * Examples: 
 % 

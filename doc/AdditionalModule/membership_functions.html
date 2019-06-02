@@ -1,0 +1,176 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>membership_functions</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="membership_functions.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%&#1052;&#1086;&#1076;&#1077;&#1083;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1081; &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080;</span>
+<span class="comment">%&#1047;&#1085;&#1072;&#1095;&#1077;&#1085;&#1080;&#1077; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1086;&#1074; &#1076;&#1080;&#1072;&#1075;&#1085;&#1086;&#1089;&#1090;&#1080;&#1088;&#1091;&#1077;&#1084;&#1086;&#1075;&#1086; &#1080;&#1079;&#1086;&#1073;&#1088;&#1072;&#1078;&#1077;&#1085;&#1080;&#1103;</span>
+<span class="comment">%&#1087;&#1088;&#1080;&#1085;&#1080;&#1084;&#1072;&#1077;&#1090;&#1089;&#1103; &#1088;&#1072;&#1074;&#1085;&#1099;&#1084; &#1079;&#1085;&#1072;&#1095;&#1077;&#1085;&#1080;&#1103;&#1084; &#1086;&#1076;&#1085;&#1086;&#1075;&#1086; &#1080;&#1079; &#1101;&#1090;&#1072;&#1083;&#1086;&#1085;&#1085;&#1099;&#1093; &#1087;&#1083;&#1102;&#1089;</span>
+<span class="comment">%&#1089;&#1083;&#1091;&#1095;&#1072;&#1081;&#1085;&#1086;&#1077; &#1086;&#1090;&#1082;&#1083;&#1086;&#1085;&#1077;&#1085;&#1080;&#1077;</span>
+
+clc;
+clear;
+
+k=5;<span class="comment">%&#1085;&#1086;&#1084;&#1077;&#1088; &#1079;&#1072;&#1073;&#1086;&#1083;&#1077;&#1074;&#1072;&#1085;&#1080;&#1103; &#1085;&#1072; &#1074;&#1093;&#1086;&#1076;&#1077;</span>
+<span class="comment">%kb_in=2^k;%&#1074;&#1093;&#1086;&#1076;&#1085;&#1086;&#1081; &#1082;&#1086;&#1076; &#1079;&#1072;&#1073;&#1086;&#1083;&#1077;&#1074;&#1072;&#1085;&#1080;&#1103;</span>
+S=0.05;<span class="comment">%&#1057;&#1050;&#1054; &#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1081; &#1088;&#1072;&#1089;&#1087;&#1088;&#1077;&#1076;&#1077;&#1083;&#1077;&#1085;&#1080;&#1103;</span>
+x = 0:14;<span class="comment">%&#1085;&#1086;&#1084;&#1077;&#1088;&#1072; &#1074;&#1086;&#1079;&#1084;&#1086;&#1078;&#1085;&#1099;&#1093; &#1073;&#1086;&#1083;&#1077;&#1079;&#1085;&#1077;&#1081;</span>
+<span class="comment">%&#1055;&#1086;&#1076;&#1083;&#1080;&#1085;&#1085;&#1099;&#1077; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099; &#1080;&#1079;&#1084;&#1077;&#1088;&#1077;&#1085;&#1080;&#1081; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1086;&#1074; Contrast, Correlation,</span>
+<span class="comment">%Energy,Homogenity &#1076;&#1083;&#1103; &#1082;&#1086;&#1084;&#1087;&#1086;&#1085;&#1077;&#1085;&#1090;&#1099; R (&#1057;&#1095;&#1080;&#1090;&#1072;&#1077;&#1084; &#1080;&#1093; &#1101;&#1090;&#1072;&#1083;&#1086;&#1085;&#1085;&#1099;&#1084; &#1086;&#1087;&#1080;&#1089;&#1072;&#1085;&#1080;&#1077;&#1084; &#1076;&#1083;&#1103; 15</span>
+<span class="comment">%&#1073;&#1086;&#1083;&#1077;&#1079;&#1085;&#1077;&#1081;)</span>
+
+Rcon = [0.2457 0.124 0.3154 0.2008 0.3102 0.2077 0.2023 0.1599 0.2013 0.2941 0.3151 0.1268 0.2207 0.33 0.34];
+Rcor = [0.9497 0.9439 0.8911 0.8028 0.8128 0.9657 0.937 0.9296 0.8735 0.8784 0.8542 0.9341 0.9049 0.8213 0.935];
+Ren = [0.1195 0.2224 0.1504 0.3312 0.1897 0.1092 0.2122 0.2347 0.2263 0.1417 0.1444 0.2764 0.1639 0.1693 0.1583];
+Rhom = [0.9005 0.9471 0.8596 0.925 0.8669 0.9064 0.9062 0.923 0.9024 0.8653 0.8514 0.938 0.8938 0.8495 0.9026];
+
+noise1=rand(16);
+<span class="keyword">for</span> j=1:15
+Rcon(j)=1-abs(Rcon(j)-Rcon(k)+S*noise1(j));<span class="comment">%&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103; &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080; 1</span>
+<span class="keyword">end</span>
+noise2=rand(16);
+<span class="keyword">for</span> j=1:15
+Rcor(j)=1-abs(Rcor(j)-Rcor(k)+S*noise2(j));<span class="comment">%&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103; &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080; 2</span>
+<span class="keyword">end</span>
+noise3=rand(16);
+<span class="keyword">for</span> j=1:15
+Ren(j)=1-abs(Ren(j)-Ren(k)+S*noise3(j));<span class="comment">%&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103; &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080; 3</span>
+<span class="keyword">end</span>
+noise4=rand(16);
+<span class="keyword">for</span> j=1:15
+Rhom(j)=1-abs(Rhom(j)-Rhom(k)+S*noise4(j));<span class="comment">%&#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103; &#1087;&#1088;&#1080;&#1085;&#1072;&#1076;&#1083;&#1077;&#1078;&#1085;&#1086;&#1089;&#1090;&#1080; 4</span>
+<span class="keyword">end</span>
+xx = 0:.25:14;
+yRcon = spline(x,Rcon,xx);
+yRcor = spline(x,Rcor,xx);
+yRen = spline(x,Ren,xx);
+yRhom = spline(x,Rhom,xx);
+figure
+subplot (4,1,1);
+plot(x,Rcon,<span class="string">'o'</span>,xx,yRcon);hold <span class="string">on</span>;plot(xx,0.8,<span class="string">'k'</span>);hold <span class="string">off</span>;title(<span class="string">'Contrast'</span>);subplot(4,1,2);
+plot(x,Rcor,<span class="string">'o'</span>,xx,yRcor);title(<span class="string">'Correlation'</span>);subplot(4,1,3);
+plot(x,Ren,<span class="string">'o'</span>,xx,yRen);title(<span class="string">'Energy'</span>);subplot(4,1,4);
+plot(x,Rhom,<span class="string">'o'</span>,xx,yRhom);title(<span class="string">'Homogenity'</span>);
+
+<span class="comment">% pause;</span>
+<span class="comment">% close all;</span>
+<span class="comment">% clear;</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%Моделирование функций принадлежности
+%Значение параметров диагностируемого изображения
+%принимается равным значениям одного из эталонных плюс
+%случайное отклонение
+
+clc;
+clear;
+
+k=5;%номер заболевания на входе
+%kb_in=2^k;%входной код заболевания
+S=0.05;%СКО функций распределения
+x = 0:14;%номера возможных болезней
+%Подлинные результаты измерений параметров Contrast, Correlation,
+%Energy,Homogenity для компоненты R (Считаем их эталонным описанием для 15
+%болезней)
+
+Rcon = [0.2457 0.124 0.3154 0.2008 0.3102 0.2077 0.2023 0.1599 0.2013 0.2941 0.3151 0.1268 0.2207 0.33 0.34];
+Rcor = [0.9497 0.9439 0.8911 0.8028 0.8128 0.9657 0.937 0.9296 0.8735 0.8784 0.8542 0.9341 0.9049 0.8213 0.935];
+Ren = [0.1195 0.2224 0.1504 0.3312 0.1897 0.1092 0.2122 0.2347 0.2263 0.1417 0.1444 0.2764 0.1639 0.1693 0.1583];
+Rhom = [0.9005 0.9471 0.8596 0.925 0.8669 0.9064 0.9062 0.923 0.9024 0.8653 0.8514 0.938 0.8938 0.8495 0.9026];
+
+noise1=rand(16);
+for j=1:15
+Rcon(j)=1-abs(Rcon(j)-Rcon(k)+S*noise1(j));%функция принадлежности 1
+end
+noise2=rand(16);
+for j=1:15
+Rcor(j)=1-abs(Rcor(j)-Rcor(k)+S*noise2(j));%функция принадлежности 2
+end
+noise3=rand(16);
+for j=1:15
+Ren(j)=1-abs(Ren(j)-Ren(k)+S*noise3(j));%функция принадлежности 3
+end
+noise4=rand(16);
+for j=1:15
+Rhom(j)=1-abs(Rhom(j)-Rhom(k)+S*noise4(j));%функция принадлежности 4
+end
+xx = 0:.25:14;
+yRcon = spline(x,Rcon,xx);
+yRcor = spline(x,Rcor,xx);
+yRen = spline(x,Ren,xx);
+yRhom = spline(x,Rhom,xx);
+figure
+subplot (4,1,1);
+plot(x,Rcon,'o',xx,yRcon);hold on;plot(xx,0.8,'k');hold off;title('Contrast');subplot(4,1,2); 
+plot(x,Rcor,'o',xx,yRcor);title('Correlation');subplot(4,1,3); 
+plot(x,Ren,'o',xx,yRen);title('Energy');subplot(4,1,4); 
+plot(x,Rhom,'o',xx,yRhom);title('Homogenity'); 
+
+% pause;
+% close all;
+% clear;
+##### SOURCE END #####
+--></body></html>

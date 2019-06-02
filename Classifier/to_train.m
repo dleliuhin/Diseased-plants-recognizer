@@ -8,7 +8,8 @@ function [] = to_train(iGroup)
 % 
 % * Input 
 % 
-% -- iGroup - 
+% -- iGroup - structure with allocated memory for healthy and
+%             diseased part of a plants.
 % 
 % * Examples: 
 % 
@@ -16,7 +17,7 @@ function [] = to_train(iGroup)
 % 
 % * See also: 
 % 
-% List related files here 
+% TO_TRAIN_GROUP
 % 
 % * Author: Dmitrii Leliuhin 
 % * Email: dleliuhin@mail.ru 

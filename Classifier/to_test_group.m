@@ -4,15 +4,25 @@ function [] = to_test_group(iPath, iMarks, iGroup, iGroupValue, iLogsFile)
 %
 % * Syntax
 %
-% [OUTPUTARGS] = TO_TEST_GROUP(INPUTARGS)
+% [] = TO_TEST_GROUP(IPATH, IMARKS, IGROUP, IGROUPVALUE, ILOGSVALUE)
 %
 % * Input
 %
-% -- INPUTARGS -
+% -- iPath - relative path to test images dataset.
 %
-% * Output
+% -- iMarks - filed structure of statistic "averages" and indicators
+%             including mean, std, median, mode, range, minRange, maxRange
+%             according to plot values.
+%             Every indicator contains R, G, B, RG, RB, GB components.
+%             Every component contains Contrast, Correlation, Energy,
+%             Homogeneity properties.
 %
-% -- OUTPUTARGS -
+% -- iGroup - structure of statistic "average" or indicator
+%             with allocated memory
+%
+% -- iGroupValue - number of images in one group. 
+%
+% -- iLogsFile - file for output result logs.
 %
 % * Examples:
 %
@@ -20,7 +30,8 @@ function [] = to_test_group(iPath, iMarks, iGroup, iGroupValue, iLogsFile)
 %
 % * See also:
 %
-% List related files here
+% FINDGLCMSTATISTICS, INCREMENTGROUPCOMPONENTS, GROUPCALC,
+% CALCTESTRESULTS, WRITETESTRESULTSTXT, GROUPCLEAR
 %
 % * Author: Dmitrii Leliuhin
 % * Email: dleliuhin@mail.ru
@@ -47,7 +58,7 @@ for i = 1:length(f(:))
     
     he = imread(fullfile(iPath, f(i).name));
     
-%     he = adaptiveGammaCorrection(he);
+    %     he = adaptiveGammaCorrection(he);
     
     stats = findGlcmStatistic(he);
     
