@@ -1,0 +1,386 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeTestResultsTxt</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeTestResultsTxt.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">WRITETESTRESULTSTXT</a></li><li><a href="#3">Code</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> [] = writeTestResultsTxt(iLogsFile, iMarks, iGroup, decis)
+</pre><h2>WRITETESTRESULTSTXT<a name="2"></a></h2><p>Summary of this function goes here.</p><div><ul><li>Syntax</li></ul></div><p>[OUTPUTARGS] = WRITETESTRESULTSTXT(INPUTARGS)</p><div><ul><li>Input</li></ul></div><p>-- iLogsFile - file for output result logs.</p><p>-- iMarks - filed structure of statistic "averages" and indicators             including mean, std, median, mode, range, minRange, maxRange             according to plot values.             Every indicator contains R, G, B, RG, RB, GB components.             Every component contains Contrast, Correlation, Energy,             Homogeneity properties.</p><p>-- iGroup - filled structure for specific group of plant leaves             by mean values.</p><p>-- decis -</p><div><ul><li>Examples:</li></ul></div><p>Provide sample usage code here</p><div><ul><li>See also:</li></ul></div><p>List related files here</p><div><ul><li>Author: Dmitrii Leliuhin</li><li>Email: <a href="mailto:dleliuhin@mail.ru">dleliuhin@mail.ru</a></li><li>Date: 12/05/2019 19:13:46</li><li>Version: 1.0 $</li><li>Requirements: PCWIN64, MatLab R2016a</li></ul></div><div><ul><li>Warning:</li></ul></div><div><ol><li>Warnings list.</li></ol></div><div><ul><li>TODO:</li></ul></div><div><ol><li>TODO list.</li></ol></div><h2>Code<a name="3"></a></h2><pre class="codeinput">fn = fieldnames(iGroup);
+fn_group = fieldnames(iMarks);
+
+index = 0;
+
+<span class="keyword">for</span> i = 1:length(fn)
+    fn_stats = fieldnames(getfield(iGroup, fn{i}));
+
+    <span class="keyword">for</span> j = 1:length(fn_stats)
+
+        index = index + 1;
+
+        fn_stat_str = fn_stats{j};
+        <span class="keyword">if</span> (length(fn_stat_str) &lt; 11)
+            fn_stat_str = sprintf(<span class="string">'%s  \t'</span>,fn_stat_str);
+        <span class="keyword">end</span>
+
+        test_val = iGroup.(fn{i}).(fn_stats{j});
+
+        <span class="keyword">if</span> isnan(test_val)
+            test_val_str = sprintf(<span class="string">' %s '</span>, test_val);
+        <span class="keyword">else</span>
+            test_val_str = sprintf(<span class="string">'%1.3f'</span>, test_val);
+        <span class="keyword">end</span>
+
+        fprintf(iLogsFile, strcat(<span class="string">'\t\t\t|\t'</span>, <span class="keyword">...</span>
+            sprintf(<span class="string">'%s'</span>, fn{i}), <span class="string">' \t  | '</span>, <span class="keyword">...</span>
+            sprintf(<span class="string">'\t %s ||'</span>, fn_stat_str), <span class="keyword">...</span>
+            sprintf(<span class="string">' %s ||'</span>, test_val_str)));
+
+        <span class="keyword">for</span> k = 1:length(fn_group)
+            fn_group_mean_stats = fieldnames(getfield(iMarks, <span class="keyword">...</span>
+                fn_group{k}, <span class="keyword">...</span>
+                <span class="string">'means'</span>, <span class="keyword">...</span>
+                fn{i}));
+
+            <span class="keyword">if</span> isnan(decis.(fn_group{k}).d(index))
+                d_str = sprintf(<span class="string">' %s '</span>, decis.(fn_group{k}).d(index));
+            <span class="keyword">else</span>
+                d_str = sprintf(<span class="string">'%1.3f'</span>, decis.(fn_group{k}).d(index));
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> isnan(decis.(fn_group{k}).in(end))
+                in_str = sprintf(<span class="string">' %s '</span>, decis.(fn_group{k}).in(index));
+            <span class="keyword">else</span>
+                in_str = sprintf(<span class="string">' %s '</span>, num2str(decis.(fn_group{k}).in(index)));
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> isnan(decis.(fn_group{k}).r(index))
+                r_str = sprintf(<span class="string">' %s '</span>, decis.(fn_group{k}).r(index));
+            <span class="keyword">else</span>
+                r_str = sprintf(<span class="string">' %s '</span>, num2str(decis.(fn_group{k}).r(index)));
+            <span class="keyword">end</span>
+
+            fprintf(iLogsFile, <span class="keyword">...</span>
+                strcat(sprintf(<span class="string">' %1.2f |'</span>, iMarks. <span class="keyword">...</span>
+                (fn_group{k}). <span class="keyword">...</span>
+                (<span class="string">'means'</span>). <span class="keyword">...</span>
+                (fn{i}). <span class="keyword">...</span>
+                (fn_stats{j}) ), <span class="keyword">...</span>
+                sprintf(<span class="string">'%s |'</span>, in_str), <span class="keyword">...</span>
+                sprintf(<span class="string">' %s |'</span>, d_str), <span class="keyword">...</span>
+                sprintf(<span class="string">'%s||'</span>, r_str)));
+
+
+            <span class="comment">%             if  (~isempty(iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j})) &amp;&amp; ...</span>
+            <span class="comment">%                     ~isempty(test_val) &amp;&amp; ...</span>
+            <span class="comment">%                     ~isempty(iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))</span>
+            <span class="comment">%</span>
+            <span class="comment">%                 %                 if (~isnan(iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j})) &amp;&amp; ...</span>
+            <span class="comment">%                 %                     ~isnan(test_val) &amp;&amp; ...</span>
+            <span class="comment">%                 %                     ~isnan(iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))</span>
+            <span class="comment">%</span>
+            <span class="comment">%                 if ((iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j}) &lt; test_val) &amp;&amp; ...</span>
+            <span class="comment">%                         (test_val &lt; iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))</span>
+            <span class="comment">%</span>
+            <span class="comment">%                     %                     decis.(fn_group{k}).in(end + 1) = 1;</span>
+            <span class="comment">%                     %                     %                     end</span>
+            <span class="comment">%                     %                 else</span>
+            <span class="comment">%                     %                     decis.(fn_group{k}).in(end + 1) = 0;</span>
+            <span class="comment">%                     %                 end</span>
+            <span class="comment">%                     %</span>
+            <span class="comment">%                     %                 decis.(fn_group{k}).d(end + 1) = abs(iMarks. ...</span>
+            <span class="comment">%                     %                     (fn_group{k}). ...</span>
+            <span class="comment">%                     %                     ('means'). ...</span>
+            <span class="comment">%                     %                     (fn{i}). ...</span>
+            <span class="comment">%                     %                     (fn_stats{j}) - ...</span>
+            <span class="comment">%                     %                     test_val);</span>
+            <span class="comment">%</span>
+            <span class="comment">%                 end</span>
+            <span class="comment">%</span>
+            <span class="comment">%             end</span>
+        <span class="keyword">end</span>
+
+        fprintf(iLogsFile, <span class="string">'\n'</span>);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+fprintf(iLogsFile, <span class="string">'\t\t\t\t\t\t\t\t\t || \t  ||'</span>);
+
+bin_res_in = [];
+bin_res_r = [];
+
+<span class="keyword">for</span> i = 1:length(fn_group)
+    nnz_in = nnz(decis.(fn_group{i}).in == 1);
+    nnz_r = nnz(decis.(fn_group{i}).r == 1);
+
+    bin_res_in(end + 1) = nnz_in;
+    bin_res_r(end + 1) = nnz_r;
+
+    fprintf(iLogsFile, <span class="keyword">...</span>
+        strcat(sprintf(<span class="string">'  -   |'</span>), <span class="keyword">...</span>
+        sprintf(<span class="string">' %s |'</span>, num2str(nnz_in)), <span class="keyword">...</span>
+        sprintf(<span class="string">'   -   |'</span>), <span class="keyword">...</span>
+        sprintf(<span class="string">' %s ||'</span>, num2str(nnz_r))));
+<span class="keyword">end</span>
+fprintf(iLogsFile, <span class="string">'\n'</span>);
+
+max_val_in = max(bin_res_in);
+idx_in = find(bin_res_in == max_val_in);
+
+max_val_r = max(bin_res_r);
+idx_r = find(bin_res_r == max_val_r);
+
+fprintf(iLogsFile, strcat(sprintf(<span class="string">'Result: \t'</span>), <span class="keyword">...</span>
+                          sprintf(<span class="string">'\tCount in ranges = %s ;\t'</span>, num2str(max_val_in)), <span class="keyword">...</span>
+                          sprintf(<span class="string">'\tCount bin result = %s ;\t'</span>, num2str(max_val_r)), <span class="keyword">...</span>
+                          sprintf(<span class="string">'\tDiseased plant number = %s.'</span>, strcat(fn_group{idx_r}))));
+
+fprintf(iLogsFile, <span class="string">'\n'</span>);
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [] = writeTestResultsTxt(iLogsFile, iMarks, iGroup, decis)
+%% WRITETESTRESULTSTXT
+% Summary of this function goes here.
+%
+% * Syntax
+%
+% [OUTPUTARGS] = WRITETESTRESULTSTXT(INPUTARGS)
+%
+% * Input
+%
+% REPLACE_WITH_DASH_DASH iLogsFile - file for output result logs.
+%
+% REPLACE_WITH_DASH_DASH iMarks - filed structure of statistic "averages" and indicators
+%             including mean, std, median, mode, range, minRange, maxRange
+%             according to plot values.
+%             Every indicator contains R, G, B, RG, RB, GB components.
+%             Every component contains Contrast, Correlation, Energy,
+%             Homogeneity properties.
+%
+% REPLACE_WITH_DASH_DASH iGroup - filled structure for specific group of plant leaves 
+%             by mean values.
+%
+% REPLACE_WITH_DASH_DASH decis -
+%
+% * Examples:
+%
+% Provide sample usage code here
+%
+% * See also:
+%
+% List related files here
+%
+% * Author: Dmitrii Leliuhin
+% * Email: dleliuhin@mail.ru
+% * Date: 12/05/2019 19:13:46
+% * Version: 1.0 $
+% * Requirements: PCWIN64, MatLab R2016a
+%
+% * Warning:
+%
+% # Warnings list.
+%
+% * TODO:
+%
+% # TODO list.
+%
+
+%% Code
+
+fn = fieldnames(iGroup);
+fn_group = fieldnames(iMarks);
+
+index = 0;
+
+for i = 1:length(fn)
+    fn_stats = fieldnames(getfield(iGroup, fn{i}));
+    
+    for j = 1:length(fn_stats)
+        
+        index = index + 1;
+        
+        fn_stat_str = fn_stats{j};
+        if (length(fn_stat_str) < 11)
+            fn_stat_str = sprintf('%s  \t',fn_stat_str);
+        end
+        
+        test_val = iGroup.(fn{i}).(fn_stats{j});
+        
+        if isnan(test_val)
+            test_val_str = sprintf(' %s ', test_val);
+        else
+            test_val_str = sprintf('%1.3f', test_val);
+        end
+        
+        fprintf(iLogsFile, strcat('\t\t\t|\t', ...
+            sprintf('%s', fn{i}), ' \t  | ', ...
+            sprintf('\t %s ||', fn_stat_str), ...
+            sprintf(' %s ||', test_val_str)));
+        
+        for k = 1:length(fn_group)
+            fn_group_mean_stats = fieldnames(getfield(iMarks, ...
+                fn_group{k}, ...
+                'means', ...
+                fn{i}));
+            
+            if isnan(decis.(fn_group{k}).d(index))
+                d_str = sprintf(' %s ', decis.(fn_group{k}).d(index));
+            else
+                d_str = sprintf('%1.3f', decis.(fn_group{k}).d(index));
+            end
+            
+            if isnan(decis.(fn_group{k}).in(end))
+                in_str = sprintf(' %s ', decis.(fn_group{k}).in(index));
+            else
+                in_str = sprintf(' %s ', num2str(decis.(fn_group{k}).in(index)));
+            end
+            
+            if isnan(decis.(fn_group{k}).r(index))
+                r_str = sprintf(' %s ', decis.(fn_group{k}).r(index));
+            else
+                r_str = sprintf(' %s ', num2str(decis.(fn_group{k}).r(index)));
+            end
+            
+            fprintf(iLogsFile, ...
+                strcat(sprintf(' %1.2f |', iMarks. ...
+                (fn_group{k}). ...
+                ('means'). ...
+                (fn{i}). ...
+                (fn_stats{j}) ), ...
+                sprintf('%s |', in_str), ...
+                sprintf(' %s |', d_str), ...
+                sprintf('%s||', r_str)));
+            
+            
+            %             if  (~isempty(iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j})) && ...
+            %                     ~isempty(test_val) && ...
+            %                     ~isempty(iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))
+            %
+            %                 %                 if (~isnan(iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j})) && ...
+            %                 %                     ~isnan(test_val) && ...
+            %                 %                     ~isnan(iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))
+            %
+            %                 if ((iMarks.(fn_group{k}).('minRanges').(fn{i}).(fn_stats{j}) < test_val) && ...
+            %                         (test_val < iMarks.(fn_group{k}).('maxRanges').(fn{i}).(fn_stats{j})))
+            %
+            %                     %                     decis.(fn_group{k}).in(end + 1) = 1;
+            %                     %                     %                     end
+            %                     %                 else
+            %                     %                     decis.(fn_group{k}).in(end + 1) = 0;
+            %                     %                 end
+            %                     %
+            %                     %                 decis.(fn_group{k}).d(end + 1) = abs(iMarks. ...
+            %                     %                     (fn_group{k}). ...
+            %                     %                     ('means'). ...
+            %                     %                     (fn{i}). ...
+            %                     %                     (fn_stats{j}) - ...
+            %                     %                     test_val);
+            %
+            %                 end
+            %
+            %             end
+        end
+        
+        fprintf(iLogsFile, '\n');
+    end
+end
+
+fprintf(iLogsFile, '\t\t\t\t\t\t\t\t\t || \t  ||');
+
+bin_res_in = [];
+bin_res_r = [];
+
+for i = 1:length(fn_group)
+    nnz_in = nnz(decis.(fn_group{i}).in == 1);
+    nnz_r = nnz(decis.(fn_group{i}).r == 1);
+    
+    bin_res_in(end + 1) = nnz_in;
+    bin_res_r(end + 1) = nnz_r;
+    
+    fprintf(iLogsFile, ...
+        strcat(sprintf('  -   |'), ...
+        sprintf(' %s |', num2str(nnz_in)), ...
+        sprintf('   -   |'), ...
+        sprintf(' %s ||', num2str(nnz_r))));
+end
+fprintf(iLogsFile, '\n');
+
+max_val_in = max(bin_res_in);
+idx_in = find(bin_res_in == max_val_in);
+
+max_val_r = max(bin_res_r);
+idx_r = find(bin_res_r == max_val_r);
+
+fprintf(iLogsFile, strcat(sprintf('Result: \t'), ...
+                          sprintf('\tCount in ranges = %s ;\t', num2str(max_val_in)), ...
+                          sprintf('\tCount bin result = %s ;\t', num2str(max_val_r)), ...
+                          sprintf('\tDiseased plant number = %s.', strcat(fn_group{idx_r}))));
+
+fprintf(iLogsFile, '\n');                      
+
+end
+
+##### SOURCE END #####
+--></body></html>

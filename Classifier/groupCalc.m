@@ -4,15 +4,16 @@ function [oGroup] = groupCalc(iGroup)
 % 
 % * Syntax 
 % 
-% [OUTPUTARGS] = GROUPCALC(INPUTARGS)
+% [OGROUP] = GROUPCALC(IGROUP)
 % 
 % * Input 
 % 
-% -- INPUTARGS -  
+% -- iGroup - structure for specific group of plant leaves.
 % 
 % * Output 
 % 
-% -- OUTPUTARGS -  
+% -- oGroup - filled structure for specific group of plant leaves 
+%             by mean values.
 % 
 % * Examples: 
 % 

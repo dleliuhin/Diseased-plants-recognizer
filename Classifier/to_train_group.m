@@ -4,7 +4,7 @@ function [ioGroup] = to_train_group(iPath, ioGroup)
 % 
 % * Syntax 
 % 
-% []=TO_TRAIN_GROUP(INPUTARGS)
+% []=TO_TRAIN_GROUP(IPATH, IOGROUP)
 % 
 % * Input 
 % 
@@ -22,7 +22,7 @@ function [ioGroup] = to_train_group(iPath, ioGroup)
 % 
 % * See also: 
 % 
-% List related files here 
+% FINDGLCMSTSTISTIC, INCREMENTGROUPCOMPONENTS
 % 
 % * Author: Dmitrii Leliuhin 
 % * Email: dleliuhin@mail.ru 

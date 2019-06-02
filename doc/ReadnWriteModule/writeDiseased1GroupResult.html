@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeDiseased1GroupResult</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeDiseased1GroupResult.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">R</a></li><li><a href="#4">G</a></li><li><a href="#5">B</a></li><li><a href="#6">RG</a></li><li><a href="#7">RB</a></li><li><a href="#8">GB</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> [res] = writeDiseased1GroupResult(fileres, <span class="keyword">...</span>
+                                                   stats, <span class="keyword">...</span>
+                                                   marks, <span class="keyword">...</span>
+                                                   imagename1, <span class="keyword">...</span>
+                                                   imagename2, <span class="keyword">...</span>
+                                                   atribute, <span class="keyword">...</span>
+                                                   count, <span class="keyword">...</span>
+                                                   res)
+</pre><pre class="codeinput">count = 0;
+sumMarkh = [];
+sumMarknh = [];
+</pre><h2>R<a name="3"></a></h2><pre class="codeinput">markh = double(marks.h.means.R.Contrast);
+currentStats = double(mean(stats.R.Contrast));
+marknh = double(marks.nh.means.R.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'%s - %s | \t %d \t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    imagename1, imagename2, atribute, sprintf(<span class="string">'R.Contrast    '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  double(abs(markh - currentStats));
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Correlation);
+currentStats = double(mean(stats.R.Correlation));
+marknh = double(marks.nh.means.R.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'R.Correlation '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) = abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Energy);
+currentStats = double(mean(stats.R.Energy));
+marknh = double(marks.nh.means.R.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'R.Energy      '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Homogeneity);
+currentStats = double(mean(stats.R.Homogeneity));
+marknh = double(marks.nh.means.R.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'R.Homogeneity '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><h2>G<a name="4"></a></h2><pre class="codeinput">markh = double(marks.h.means.G.Contrast);
+currentStats = double(mean(stats.G.Contrast));
+marknh = double(marks.nh.means.G.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'G.Contrast    '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Correlation);
+currentStats = double(mean(stats.G.Correlation));
+marknh = double(marks.nh.means.G.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'G.Correlation '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Energy);
+currentStats = double(mean(stats.G.Energy));
+marknh = double(marks.nh.means.G.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'G.Energy      '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Homogeneity);
+currentStats = double(mean(stats.G.Homogeneity));
+marknh = double(marks.nh.means.G.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'G.Homogeneity '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><h2>B<a name="5"></a></h2><pre class="codeinput">markh = double(marks.h.means.B.Contrast);
+currentStats = double(mean(stats.B.Contrast));
+marknh = double(marks.nh.means.B.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'B.Contrast    '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Correlation);
+currentStats = double(mean(stats.B.Correlation));
+marknh = double(marks.nh.means.B.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'B.Correlation '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Energy);
+currentStats = double(mean(stats.B.Energy));
+marknh = double(marks.nh.means.B.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'B.Energy      '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Homogeneity);
+currentStats = double(mean(stats.B.Homogeneity));
+marknh = double(marks.nh.means.B.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'B.Homogeneity '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><h2>RG<a name="6"></a></h2><pre class="codeinput">markh = double(marks.h.means.RG.Contrast);
+currentStats = double(mean(stats.RG.Contrast));
+marknh = double(marks.nh.means.RG.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RG.Contrast   '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Correlation);
+currentStats = double(mean(stats.RG.Correlation));
+marknh = double(marks.nh.means.RG.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RG.Correlation'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Energy);
+currentStats = double(mean(stats.RG.Energy));
+marknh = double(marks.nh.means.RG.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RG.Energy     '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Homogeneity);
+currentStats = double(mean(stats.RG.Homogeneity));
+marknh = double(marks.nh.means.RG.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RG.Homogeneity'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><h2>RB<a name="7"></a></h2><pre class="codeinput">markh = double(marks.h.means.RB.Contrast);
+currentStats = double(mean(stats.RB.Contrast));
+marknh = double(marks.nh.means.RB.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RB.Contrast   '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Correlation);
+currentStats = double(mean(stats.RB.Correlation));
+marknh = double(marks.nh.means.RB.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RB.Correlation'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Energy);
+currentStats = double(mean(stats.RB.Energy));
+marknh = double(marks.nh.means.RB.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RB.Energy     '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Homogeneity);
+currentStats = double(mean(stats.RB.Homogeneity));
+marknh = double(marks.nh.means.RB.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'RB.Homogeneity'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><h2>GB<a name="8"></a></h2><pre class="codeinput">markh = double(marks.h.means.GB.Contrast);
+currentStats = double(mean(stats.GB.Contrast));
+marknh = double(marks.nh.means.GB.Contrast);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'GB.Contrast   '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Correlation);
+currentStats = double(mean(stats.GB.Correlation));
+marknh = double(marks.nh.means.GB.Correlation);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'GB.Correlation'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Energy);
+currentStats = double(mean(stats.GB.Energy));
+marknh = double(marks.nh.means.GB.Energy);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'GB.Energy     '</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Homogeneity);
+currentStats = double(mean(stats.GB.Homogeneity));
+marknh = double(marks.nh.means.GB.Homogeneity);
+[res, count] = checkResultPercents(markh, <span class="keyword">...</span>
+                                   currentStats, <span class="keyword">...</span>
+                                   marknh, <span class="keyword">...</span>
+                                   count);
+fprintf(<span class="string">'\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n'</span>, <span class="keyword">...</span>
+    sprintf(<span class="string">'GB.Homogeneity'</span>), <span class="keyword">...</span>
+    markh, <span class="keyword">...</span>
+    abs(markh - currentStats), <span class="keyword">...</span>
+    currentStats, <span class="keyword">...</span>
+    abs(marknh - currentStats), <span class="keyword">...</span>
+    marknh, <span class="keyword">...</span>
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+</pre><pre class="codeinput">hCountPercent = double((count.h)./count*100);
+nhCountPercent = double((count.nh)./count *100);
+<span class="keyword">if</span> (hCountPercent &gt; nhCountPercent)
+    finalResult = 1;
+    res = res + 1;
+<span class="keyword">elseif</span> (hCountPercent &lt; nhCountPercent)
+    finalResult = 0;
+    ioResnh1 = ioResnh1 + 1;
+<span class="keyword">elseif</span> (hCountPercent == nhCountPercent)
+    finalResult = <span class="string">'undefined'</span>;
+<span class="keyword">end</span>
+
+fprintf(<span class="string">'Healthy: %3.2f%% , Ill: %3.2f%% , Verdict atribute: %s , sumDelta1: %2.4f ,  sumDelta2: %2.4f \n'</span>, <span class="keyword">...</span>
+    hCountPercent, nhCountPercent, num2str(finalResult), <span class="keyword">...</span>
+    sum(sumMarkh(isnan(sumMarkh) == 0)), <span class="keyword">...</span>
+    sum(sumMarknh(isnan(sumMarknh) == 0)));
+fprintf(<span class="string">'\n'</span>);
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [res] = writeDiseased1GroupResult(fileres, ...
+                                                   stats, ...
+                                                   marks, ...
+                                                   imagename1, ...
+                                                   imagename2, ...
+                                                   atribute, ...
+                                                   count, ...
+                                                   res)
+count = 0;
+sumMarkh = [];
+sumMarknh = [];
+
+%% R
+markh = double(marks.h.means.R.Contrast);
+currentStats = double(mean(stats.R.Contrast));
+marknh = double(marks.nh.means.R.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('%s - %s | \t %d \t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    imagename1, imagename2, atribute, sprintf('R.Contrast    '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  double(abs(markh - currentStats));
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Correlation);
+currentStats = double(mean(stats.R.Correlation));
+marknh = double(marks.nh.means.R.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('R.Correlation '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;  
+sumMarkh(end+1) = abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Energy);
+currentStats = double(mean(stats.R.Energy));
+marknh = double(marks.nh.means.R.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('R.Energy      '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.R.Homogeneity);
+currentStats = double(mean(stats.R.Homogeneity));
+marknh = double(marks.nh.means.R.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('R.Homogeneity '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);    
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%% G
+markh = double(marks.h.means.G.Contrast);
+currentStats = double(mean(stats.G.Contrast));
+marknh = double(marks.nh.means.G.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('G.Contrast    '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Correlation);
+currentStats = double(mean(stats.G.Correlation));
+marknh = double(marks.nh.means.G.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('G.Correlation '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Energy);
+currentStats = double(mean(stats.G.Energy));
+marknh = double(marks.nh.means.G.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('G.Energy      '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.G.Homogeneity);
+currentStats = double(mean(stats.G.Homogeneity));
+marknh = double(marks.nh.means.G.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('G.Homogeneity '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%% B
+markh = double(marks.h.means.B.Contrast);
+currentStats = double(mean(stats.B.Contrast));
+marknh = double(marks.nh.means.B.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('B.Contrast    '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Correlation);
+currentStats = double(mean(stats.B.Correlation));
+marknh = double(marks.nh.means.B.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('B.Correlation '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Energy);
+currentStats = double(mean(stats.B.Energy));
+marknh = double(marks.nh.means.B.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('B.Energy      '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.B.Homogeneity);
+currentStats = double(mean(stats.B.Homogeneity));
+marknh = double(marks.nh.means.B.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('B.Homogeneity '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%% RG
+markh = double(marks.h.means.RG.Contrast);
+currentStats = double(mean(stats.RG.Contrast));
+marknh = double(marks.nh.means.RG.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RG.Contrast   '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Correlation);
+currentStats = double(mean(stats.RG.Correlation));
+marknh = double(marks.nh.means.RG.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RG.Correlation'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Energy);
+currentStats = double(mean(stats.RG.Energy));
+marknh = double(marks.nh.means.RG.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RG.Energy     '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RG.Homogeneity);
+currentStats = double(mean(stats.RG.Homogeneity));
+marknh = double(marks.nh.means.RG.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RG.Homogeneity'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%% RB
+markh = double(marks.h.means.RB.Contrast);
+currentStats = double(mean(stats.RB.Contrast));
+marknh = double(marks.nh.means.RB.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RB.Contrast   '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Correlation);
+currentStats = double(mean(stats.RB.Correlation));
+marknh = double(marks.nh.means.RB.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RB.Correlation'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Energy);
+currentStats = double(mean(stats.RB.Energy));
+marknh = double(marks.nh.means.RB.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RB.Energy     '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.RB.Homogeneity);
+currentStats = double(mean(stats.RB.Homogeneity));
+marknh = double(marks.nh.means.RB.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('RB.Homogeneity'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%% GB
+markh = double(marks.h.means.GB.Contrast);
+currentStats = double(mean(stats.GB.Contrast));
+marknh = double(marks.nh.means.GB.Contrast);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('GB.Contrast   '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Correlation);
+currentStats = double(mean(stats.GB.Correlation));
+marknh = double(marks.nh.means.GB.Correlation);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('GB.Correlation'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Energy);
+currentStats = double(mean(stats.GB.Energy));
+marknh = double(marks.nh.means.GB.Energy);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('GB.Energy     '), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+markh = double(marks.h.means.GB.Homogeneity);
+currentStats = double(mean(stats.GB.Homogeneity));
+marknh = double(marks.nh.means.GB.Homogeneity);
+[res, count] = checkResultPercents(markh, ...
+                                   currentStats, ...
+                                   marknh, ...
+                                   count);
+fprintf('\t\t\t\t\t\t\t\t | %s | %2.4f  | %2.4f | %2.4f | %2.4f | %2.4f | %d \n', ...
+    sprintf('GB.Homogeneity'), ...
+    markh, ...
+    abs(markh - currentStats), ...
+    currentStats, ...
+    abs(marknh - currentStats), ...
+    marknh, ...
+    res);
+count = count + 1;
+sumMarkh(end+1) =  abs(markh - currentStats);
+sumMarknh(end+1) = abs(marknh - currentStats);
+
+%%
+hCountPercent = double((count.h)./count*100);
+nhCountPercent = double((count.nh)./count *100);
+if (hCountPercent > nhCountPercent)
+    finalResult = 1;
+    res = res + 1;
+elseif (hCountPercent < nhCountPercent)
+    finalResult = 0;
+    ioResnh1 = ioResnh1 + 1;
+elseif (hCountPercent == nhCountPercent)
+    finalResult = 'undefined';
+end
+
+fprintf('Healthy: %3.2f%% , Ill: %3.2f%% , Verdict atribute: %s , sumDelta1: %2.4f ,  sumDelta2: %2.4f \n', ...
+    hCountPercent, nhCountPercent, num2str(finalResult), ...
+    sum(sumMarkh(isnan(sumMarkh) == 0)), ...
+    sum(sumMarknh(isnan(sumMarknh) == 0)));
+fprintf('\n');
+
+end
+##### SOURCE END #####
+--></body></html>

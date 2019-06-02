@@ -1,0 +1,169 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>NormalizationTest</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="NormalizationTest.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%&#1042;&#1099;&#1095;&#1080;&#1089;&#1083;&#1077;&#1085;&#1080;&#1077; &#1084;&#1072;&#1090;&#1077;&#1084;&#1072;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1086;&#1075;&#1086; &#1086;&#1078;&#1080;&#1076;&#1072;&#1085;&#1080;&#1103;</span>
+<span class="comment">% General model Gauss2 (instead of Gauss1):</span>
+<span class="comment">%        f(x) =  a1*exp(-((x-b1)/c1)^2) + a2*exp(-((x-b2)/c2)^2)</span>
+<span class="comment">% Coefficients (with 95% confidence bounds):</span>
+       a1 =       4.367;
+       b1 =      0.6666;
+       c1 =      0.1565;
+       a2 =      -1.273;
+       b2 =      0.8046;
+       c2 =     0.09106;
+<span class="keyword">for</span> i=1:100
+x(i)=i*0.01;
+y(i)=1.56*(a1*exp(-((x(i)-b1)/c1)^2)+a2*exp(-((x(i)-b2)/c2)^2));
+<span class="comment">%&#1084;&#1085;&#1086;&#1078;&#1080;&#1090;&#1077;&#1083;&#1100; 1.56 &#1076;&#1083;&#1103; &#1085;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1082;&#1080; &#1080;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1083;&#1072;, &#1087;&#1083;&#1086;&#1097;&#1072;&#1076;&#1100; &#1087;&#1086;&#1076; &#1082;&#1088;&#1080;&#1074;&#1086;&#1081; &#1076;.&#1073;. &#1088;&#1072;&#1074;&#1085;&#1072; 1.</span>
+z1(i)=x(i)*y(i);
+<span class="keyword">end</span>
+i=1:100;
+<span class="comment">%MO_Gauss2=mean(y)</span>
+figure
+plot (x,y);
+title(<span class="string">'Gauss2'</span>)
+int1=trapz(x,z1);
+Gauss_2_=int1
+
+
+
+<span class="comment">% General model Weibull:</span>
+<span class="comment">%        f(x) = a*b*x^(b-1)*exp(-a*x^b)</span>
+<span class="comment">% Coefficients (with 95% confidence bounds):</span>
+        a =       2.948;
+        b =       87.93;
+<span class="keyword">for</span> i=1:100
+x(i)=0.8+i*0.002;
+y(i)=1.099*(a*b*x(i)^b*exp(-(a*x(i)^b)));<span class="comment">%&#1084;&#1085;&#1086;&#1078;&#1080;&#1090;&#1077;&#1083;&#1100; 1.099 &#1076;&#1083;&#1103; &#1085;&#1086;&#1088;&#1084;&#1080;&#1088;&#1086;&#1074;&#1082;&#1080; &#1080;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1083;&#1072;</span>
+<span class="comment">%&#1087;&#1083;&#1086;&#1097;&#1072;&#1076;&#1100; &#1087;&#1086;&#1076; &#1082;&#1088;&#1080;&#1074;&#1086;&#1081; &#1076;.&#1073;. &#1088;&#1072;&#1074;&#1085;&#1072; 1.</span>
+z2(i)=x(i)*y(i);
+<span class="keyword">end</span>
+figure
+plot (x,y);
+title(<span class="string">'Weibull'</span>)
+int2=trapz(x,z2);
+Weibull_=int2
+<span class="comment">%MO_Weibull=mean(y)</span>
+
+pause;
+close <span class="string">all</span>;
+clear;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%Вычисление математического ожидания
+% General model Gauss2 (instead of Gauss1):
+%        f(x) =  a1*exp(-((x-b1)/c1)^2) + a2*exp(-((x-b2)/c2)^2)
+% Coefficients (with 95% confidence bounds):
+       a1 =       4.367;  
+       b1 =      0.6666;  
+       c1 =      0.1565;  
+       a2 =      -1.273;  
+       b2 =      0.8046;  
+       c2 =     0.09106;  
+for i=1:100
+x(i)=i*0.01;
+y(i)=1.56*(a1*exp(-((x(i)-b1)/c1)^2)+a2*exp(-((x(i)-b2)/c2)^2));
+%множитель 1.56 для нормировки интеграла, площадь под кривой д.б. равна 1.
+z1(i)=x(i)*y(i);
+end
+i=1:100;
+%MO_Gauss2=mean(y)
+figure
+plot (x,y);
+title('Gauss2')
+int1=trapz(x,z1);
+Gauss_2_=int1
+
+
+
+% General model Weibull:
+%        f(x) = a*b*x^(b-1)*exp(-a*x^b)
+% Coefficients (with 95% confidence bounds):
+        a =       2.948;  
+        b =       87.93;  
+for i=1:100
+x(i)=0.8+i*0.002;
+y(i)=1.099*(a*b*x(i)^b*exp(-(a*x(i)^b)));%множитель 1.099 для нормировки интеграла
+%площадь под кривой д.б. равна 1.
+z2(i)=x(i)*y(i);
+end
+figure
+plot (x,y);
+title('Weibull')
+int2=trapz(x,z2);
+Weibull_=int2
+%MO_Weibull=mean(y)
+
+pause;
+close all;
+clear;
+
+
+
+##### SOURCE END #####
+--></body></html>

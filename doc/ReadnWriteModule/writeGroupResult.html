@@ -1,0 +1,272 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeGroupResult</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeGroupResult.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">WRITEGROUPRESULT</a></li><li><a href="#3">Code</a></li><li><a href="#4">R</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> [ioStatistics, <span class="keyword">...</span>
+          ioTableColumns] = writeGroupResult(iResFileName, <span class="keyword">...</span>
+                                    iGroupValue, <span class="keyword">...</span>
+                                    iDiseaseCode, <span class="keyword">...</span>
+                                    iStats, <span class="keyword">...</span>
+                                    iMarks, <span class="keyword">...</span>
+                                    iImagename1, <span class="keyword">...</span>
+                                    iImagename2, <span class="keyword">...</span>
+                                    ioStatistics, <span class="keyword">...</span>
+                                    ioTableColumns)
+</pre><h2>WRITEGROUPRESULT<a name="2"></a></h2><p>Check sample test from specific sample test folders and</p><div><ul><li>Syntax</li></ul></div><p>[] = WRITEGROUPRESULT(MARKS, GROUPVALUE)</p><div><ul><li>Intput</li></ul></div><p>-- marks - structure of statistic "averages" and indicators.</p><p>-- groupValue - Number of images in one group.</p><div><ul><li>Examples:</li></ul></div><p>Provide sample usage code here.</p><div><ul><li>See also:</li></ul></div><div><ul><li>Authors: Dmitrii Leliuhin</li><li>Email: <a href="mailto:dleliuhin@mail.ru">dleliuhin@mail.ru</a></li><li>Date: 04/09/2018 18:51:36</li><li>Version: 1.0 $</li><li>Requirements: PCWIN64, MatLab R2016a</li></ul></div><div><ul><li>Warning:</li></ul></div><p>No Warnings.</p><div><ul><li>TODO:</li></ul></div><p>TODO list.</p><h2>Code<a name="3"></a></h2><pre class="codeinput"><span class="keyword">if</span> (iGroupValue == 1)
+<span class="comment">%     fprintf(iResFileName, '%s |  \t %d \t\t| \n', ...</span>
+<span class="comment">%             iImagename1, ioStatistics.attribute);</span>
+    ioTableColumns.imageNames{end+1} = sprintf(<span class="string">'%s'</span>, iImagename1);
+    ioTableColumns.Attribute(end+1) = num2str(ioStatistics.attribute);
+<span class="keyword">else</span>
+<span class="comment">%     fprintf(iResFileName, '%s - %s |  \t %d \t   | \n', ...</span>
+<span class="comment">%             iImagename1, iImagename2, ioStatistics.attribute);</span>
+    ioTableColumns.imageNames{end+1} = <span class="keyword">...</span>
+                   sprintf(<span class="string">'%s - %s'</span>, iImagename1, iImagename2);
+    ioTableColumns.Attribute(end+1) = num2str(ioStatistics.attribute);
+<span class="keyword">end</span>
+
+ioTableColumns.Component{end+1} = <span class="string">' '</span>;
+ioTableColumns.Healthy(end+1) = <span class="string">' '</span>;
+ioTableColumns.delta1(end+1) = <span class="string">' '</span>;
+ioTableColumns.Test(end+1) = <span class="string">' '</span>;
+ioTableColumns.delta2(end+1) = <span class="string">' '</span>;
+ioTableColumns.Ill(end+1) = <span class="string">' '</span>;
+ioTableColumns.Result(end+1) = <span class="string">' '</span>;
+</pre><h2>R<a name="4"></a></h2><pre class="codeinput">[ioStatistics, <span class="keyword">...</span>
+ ioTableColumns] = writeComponentResult(iResFileName, <span class="keyword">...</span>
+                                        iDiseaseCode, <span class="keyword">...</span>
+                                        <span class="string">'means'</span>, <span class="keyword">...</span>
+                                        <span class="string">'R'</span>, <span class="keyword">...</span>
+                                        iStats, <span class="keyword">...</span>
+                                        iMarks.leaves, <span class="keyword">...</span>
+                                        ioStatistics, <span class="keyword">...</span>
+                                        ioTableColumns);
+
+<span class="comment">% %% G</span>
+<span class="comment">%</span>
+<span class="comment">% writeComponentResult();</span>
+<span class="comment">%</span>
+<span class="comment">% %% B</span>
+<span class="comment">%</span>
+<span class="comment">% writeComponentResult();</span>
+<span class="comment">%</span>
+<span class="comment">% %% RG</span>
+<span class="comment">%</span>
+<span class="comment">% writeComponentResult();</span>
+<span class="comment">%</span>
+<span class="comment">% %% RB</span>
+<span class="comment">%</span>
+<span class="comment">% writeComponentResult();</span>
+<span class="comment">%</span>
+<span class="comment">% %% GB</span>
+<span class="comment">%</span>
+<span class="comment">% writeComponentResult();</span>
+</pre><pre class="codeinput">ioStatistics.CountPercent.h = double((ioStatistics.count.h) ./ ioStatistics.allCount * 100);
+ioStatistics.CountPercent.nh = double((ioStatistics.count.(iDiseaseCode)) ./ ioStatistics.allCount * 100);
+
+<span class="keyword">if</span> (ioStatistics.sumMark.h &gt; <span class="keyword">...</span>
+    ioStatistics.sumMark.nh)
+    ioStatistics.finalResult = 1;
+    ioStatistics.res.h = ioStatistics.res.h + 1;
+
+<span class="keyword">elseif</span> (ioStatistics.sumMark.h &lt; <span class="keyword">...</span>
+        ioStatistics.sumMark.nh)
+    ioStatistics.finalResult = 0;
+    ioStatistics.res.(iDiseaseCode) = ioStatistics.res.(iDiseaseCode) + 1;
+
+<span class="keyword">elseif</span> (ioStatistics.sumMark.h == <span class="keyword">...</span>
+        ioStatistics.sumMark.nh)
+    ioStatistics.finalResult = <span class="string">'undefined'</span>;
+
+<span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [ioStatistics, ...
+          ioTableColumns] = writeGroupResult(iResFileName, ...
+                                    iGroupValue, ...
+                                    iDiseaseCode, ...
+                                    iStats, ...
+                                    iMarks, ...
+                                    iImagename1, ...
+                                    iImagename2, ...
+                                    ioStatistics, ...
+                                    ioTableColumns)
+%% WRITEGROUPRESULT
+% Check sample test from specific sample test folders and
+% 
+% * Syntax
+%
+% [] = WRITEGROUPRESULT(MARKS, GROUPVALUE)
+%
+% * Intput
+%
+% REPLACE_WITH_DASH_DASH marks - structure of statistic "averages" and indicators.
+%
+% REPLACE_WITH_DASH_DASH groupValue - Number of images in one group.
+%
+% * Examples: 
+% 
+% Provide sample usage code here.
+% 
+% * See also: 
+%   
+% 
+%           
+% * Authors: Dmitrii Leliuhin
+% * Email: dleliuhin@mail.ru 
+% * Date: 04/09/2018 18:51:36
+% * Version: 1.0 $ 
+% * Requirements: PCWIN64, MatLab R2016a  
+% 
+% * Warning: 
+%
+% No Warnings.
+% 
+% * TODO: 
+% 
+% TODO list.
+% 
+
+%% Code
+
+if (iGroupValue == 1)
+%     fprintf(iResFileName, '%s |  \t %d \t\t| \n', ...
+%             iImagename1, ioStatistics.attribute);
+    ioTableColumns.imageNames{end+1} = sprintf('%s', iImagename1);
+    ioTableColumns.Attribute(end+1) = num2str(ioStatistics.attribute);
+else
+%     fprintf(iResFileName, '%s - %s |  \t %d \t   | \n', ...
+%             iImagename1, iImagename2, ioStatistics.attribute);
+    ioTableColumns.imageNames{end+1} = ...
+                   sprintf('%s - %s', iImagename1, iImagename2);
+    ioTableColumns.Attribute(end+1) = num2str(ioStatistics.attribute);
+end
+
+ioTableColumns.Component{end+1} = ' ';
+ioTableColumns.Healthy(end+1) = ' ';
+ioTableColumns.delta1(end+1) = ' ';
+ioTableColumns.Test(end+1) = ' ';
+ioTableColumns.delta2(end+1) = ' ';
+ioTableColumns.Ill(end+1) = ' ';
+ioTableColumns.Result(end+1) = ' ';
+
+%% R
+
+[ioStatistics, ...
+ ioTableColumns] = writeComponentResult(iResFileName, ...
+                                        iDiseaseCode, ...
+                                        'means', ...
+                                        'R', ...
+                                        iStats, ...
+                                        iMarks.leaves, ...
+                                        ioStatistics, ...
+                                        ioTableColumns);
+
+% %% G
+% 
+% writeComponentResult();
+% 
+% %% B
+% 
+% writeComponentResult();
+% 
+% %% RG
+% 
+% writeComponentResult();
+% 
+% %% RB
+% 
+% writeComponentResult();
+% 
+% %% GB
+% 
+% writeComponentResult();
+
+%%
+ioStatistics.CountPercent.h = double((ioStatistics.count.h) ./ ioStatistics.allCount * 100);
+ioStatistics.CountPercent.nh = double((ioStatistics.count.(iDiseaseCode)) ./ ioStatistics.allCount * 100);
+
+if (ioStatistics.sumMark.h > ...
+    ioStatistics.sumMark.nh)
+    ioStatistics.finalResult = 1;
+    ioStatistics.res.h = ioStatistics.res.h + 1;
+    
+elseif (ioStatistics.sumMark.h < ...
+        ioStatistics.sumMark.nh)
+    ioStatistics.finalResult = 0;
+    ioStatistics.res.(iDiseaseCode) = ioStatistics.res.(iDiseaseCode) + 1;
+    
+elseif (ioStatistics.sumMark.h == ...
+        ioStatistics.sumMark.nh)    
+    ioStatistics.finalResult = 'undefined';
+
+end
+
+end
+##### SOURCE END #####
+--></body></html>

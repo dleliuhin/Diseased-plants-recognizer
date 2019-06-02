@@ -4,7 +4,7 @@ function [oTable] = initializeTables()
 % 
 % * Syntax 
 % 
-% [OUTPUTARGS] = INITIALIZETABLES(INPUTARGS)
+% [OTABLE] = INITIALIZETABLES()
 % 
 % * Input 
 % 

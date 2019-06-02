@@ -4,15 +4,20 @@ function [oAverValue] = getStdAverValue(iMarks)
 % 
 % * Syntax 
 % 
-% [OUTPUTARGS] = GETSTDAVERVALUE(INPUTARGS)
+% [OAVERVALUE] = GETSTDAVERVALUE(IMARKS)
 % 
 % * Input 
 % 
-% -- INPUTARGS -  
+% -- iMarks - filed structure of statistic "averages" and indicators
+%             including mean, std, median, mode, range, minRange, maxRange
+%             according to plot values.
+%             Every indicator contains R, G, B, RG, RB, GB components.
+%             Every component contains Contrast, Correlation, Energy,
+%             Homogeneity properties.
 % 
 % * Output 
 % 
-% -- OUTPUTARGS -  
+% -- oAverValue - sequence for calculating number of images in one group. 
 % 
 % * Examples: 
 % 

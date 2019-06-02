@@ -1,0 +1,344 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeXlsxGroupData</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeXlsxGroupData.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">WRITEXLSXGROUPDATA</a></li><li><a href="#3">Code</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> writeXlsxGroupData(iTableFileName, <span class="keyword">...</span>
+                            iLeaveGroup, <span class="keyword">...</span>
+                            iStartColumn, <span class="keyword">...</span>
+                            iStartRow)
+</pre><h2>WRITEXLSXGROUPDATA<a name="2"></a></h2><p>Write current plantic iLeaveGroup statistic for each image from this group to table in Result/Tables/iTableFileName.xlsx from specifics iStartColumn and iStartRow.</p><div><ul><li>Syntax</li></ul></div><pre class="codeinput"><span class="comment">%	[] = WRITEXLSXGROUPDATA(ITABLEFILENAME,</span>
+<span class="comment">%                           ILEAVEGROUP,</span>
+<span class="comment">%                           ISTARTCOLUMN,</span>
+<span class="comment">%                           ISTARTROW)</span>
+<span class="comment">%</span>
+<span class="comment">% * Input</span>
+<span class="comment">%</span>
+<span class="comment">% -- iTableFileName - name of the file in which need to write averages.</span>
+<span class="comment">%</span>
+<span class="comment">% -- iLeaveGroup - structure with healthy and diseased parts of a plants.</span>
+<span class="comment">%</span>
+<span class="comment">% -- iStartColumn - column in table of iTableFileName from which need to</span>
+<span class="comment">%                   write data statistic.</span>
+<span class="comment">%</span>
+<span class="comment">% -- iStartRow - row in table of iTableFileName from which need to</span>
+<span class="comment">%                write data statistic.</span>
+<span class="comment">%</span>
+<span class="comment">% * Examples:</span>
+<span class="comment">%</span>
+<span class="comment">% Provide sample usage code here</span>
+<span class="comment">%</span>
+<span class="comment">% * See also:</span>
+<span class="comment">%</span>
+<span class="comment">% No relations.</span>
+<span class="comment">%</span>
+<span class="comment">% * Author: Dmitrii Leliuhin</span>
+<span class="comment">% * Email: dleliuhin@mail.ru</span>
+<span class="comment">% * Date: 02/11/2018 01:00:23</span>
+<span class="comment">% * Version: 1.0 $</span>
+<span class="comment">% * Requirements: PCWIN64, MatLab R2016a</span>
+<span class="comment">%</span>
+<span class="comment">% * Warning:</span>
+<span class="comment">%</span>
+<span class="comment">% # Warnings list.</span>
+<span class="comment">%</span>
+<span class="comment">% * TODO:</span>
+<span class="comment">%</span>
+<span class="comment">% # TODO list.</span>
+<span class="comment">%</span>
+</pre><h2>Code<a name="3"></a></h2><pre class="codeinput"><span class="comment">% Write statistic data for R component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.R.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, <span class="keyword">...</span>
+                 num2str(iStartRow), <span class="keyword">...</span>
+                  <span class="string">':CD'</span>, <span class="keyword">...</span>
+                   num2str(iStartRow)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.R.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 1), <span class="string">':CD'</span>, num2str(iStartRow + 1)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.R.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 2), <span class="string">':CD'</span>, num2str(iStartRow + 2)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.R.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 3), <span class="string">':CD'</span>, num2str(iStartRow + 3)));
+
+<span class="comment">% Write statistic data for G component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.G.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 4), <span class="string">':CD'</span>, num2str(iStartRow + 4)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.G.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 5), <span class="string">':CD'</span>, num2str(iStartRow + 5)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.G.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 6), <span class="string">':CD'</span>, num2str(iStartRow + 6)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.G.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 7), <span class="string">':CD'</span>, num2str(iStartRow + 7)));
+
+<span class="comment">% Write statistic data for B component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.B.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 8), <span class="string">':CD'</span>, num2str(iStartRow + 8)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.B.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 9), <span class="string">':CD'</span>, num2str(iStartRow + 9)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.B.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 10), <span class="string">':CD'</span>, num2str(iStartRow + 10)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.B.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 11), <span class="string">':CD'</span>, num2str(iStartRow + 11)));
+
+<span class="comment">% Write statistic data for RG component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RG.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 12), <span class="string">':CD'</span>, num2str(iStartRow + 12)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RG.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 13), <span class="string">':CD'</span>, num2str(iStartRow + 13)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RG.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 14), <span class="string">':CD'</span>, num2str(iStartRow + 14)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RG.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 15), <span class="string">':CD'</span>, num2str(iStartRow + 15)));
+
+<span class="comment">% Write statistic data for RB component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RB.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 16), <span class="string">':CD'</span>, num2str(iStartRow + 16)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RB.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 17), <span class="string">':CD'</span>, num2str(iStartRow + 17)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RB.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 18), <span class="string">':CD'</span>, num2str(iStartRow + 18)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.RB.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 19), <span class="string">':CD'</span>, num2str(iStartRow + 19)));
+
+<span class="comment">% Write statistic data for GB component.</span>
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.GB.Contrast, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 20), <span class="string">':CD'</span>, num2str(iStartRow + 20)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.GB.Correlation, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 21), <span class="string">':CD'</span>, num2str(iStartRow + 21)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.GB.Energy, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 22), <span class="string">':CD'</span>, num2str(iStartRow + 22)));
+xlswrite(strcat(<span class="string">'Result/Tables/'</span>, iTableFileName, <span class="string">'.xlsx'</span>), <span class="keyword">...</span>
+         iLeaveGroup.GB.Homogeneity, <span class="keyword">...</span>
+         strcat(iStartColumn, num2str(iStartRow + 23), <span class="string">':CD'</span>, num2str(iStartRow + 23)));
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function writeXlsxGroupData(iTableFileName, ...
+                            iLeaveGroup, ...
+                            iStartColumn, ...
+                            iStartRow)
+%% WRITEXLSXGROUPDATA 
+% Write current plantic iLeaveGroup statistic for each image from 
+% this group to table in Result/Tables/iTableFileName.xlsx from 
+% specifics iStartColumn and iStartRow.
+% 
+% * Syntax 
+% 
+%	[] = WRITEXLSXGROUPDATA(ITABLEFILENAME,   
+%                           ILEAVEGROUP,
+%                           ISTARTCOLUMN,
+%                           ISTARTROW)
+% 
+% * Input 
+% 
+% REPLACE_WITH_DASH_DASH iTableFileName - name of the file in which need to write averages.
+% 
+% REPLACE_WITH_DASH_DASH iLeaveGroup - structure with healthy and diseased parts of a plants.
+% 
+% REPLACE_WITH_DASH_DASH iStartColumn - column in table of iTableFileName from which need to 
+%                   write data statistic.
+%
+% REPLACE_WITH_DASH_DASH iStartRow - row in table of iTableFileName from which need to 
+%                write data statistic.
+% 
+% * Examples: 
+% 
+% Provide sample usage code here
+% 
+% * See also: 
+% 
+% No relations.
+% 
+% * Author: Dmitrii Leliuhin 
+% * Email: dleliuhin@mail.ru 
+% * Date: 02/11/2018 01:00:23 
+% * Version: 1.0 $ 
+% * Requirements: PCWIN64, MatLab R2016a 
+% 
+% * Warning: 
+% 
+% # Warnings list. 
+% 
+% * TODO: 
+% 
+% # TODO list. 
+% 
+
+%% Code 
+
+% Write statistic data for R component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.R.Contrast, ...
+         strcat(iStartColumn, ...
+                 num2str(iStartRow), ...
+                  ':CD', ...
+                   num2str(iStartRow)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.R.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 1), ':CD', num2str(iStartRow + 1)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.R.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 2), ':CD', num2str(iStartRow + 2)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.R.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 3), ':CD', num2str(iStartRow + 3)));
+
+% Write statistic data for G component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.G.Contrast, ...
+         strcat(iStartColumn, num2str(iStartRow + 4), ':CD', num2str(iStartRow + 4)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.G.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 5), ':CD', num2str(iStartRow + 5)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.G.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 6), ':CD', num2str(iStartRow + 6)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.G.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 7), ':CD', num2str(iStartRow + 7)));
+
+% Write statistic data for B component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.B.Contrast, ...
+         strcat(iStartColumn, num2str(iStartRow + 8), ':CD', num2str(iStartRow + 8)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.B.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 9), ':CD', num2str(iStartRow + 9)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.B.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 10), ':CD', num2str(iStartRow + 10)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.B.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 11), ':CD', num2str(iStartRow + 11)));
+
+% Write statistic data for RG component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RG.Contrast, ...
+         strcat(iStartColumn, num2str(iStartRow + 12), ':CD', num2str(iStartRow + 12)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RG.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 13), ':CD', num2str(iStartRow + 13)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RG.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 14), ':CD', num2str(iStartRow + 14)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RG.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 15), ':CD', num2str(iStartRow + 15)));
+
+% Write statistic data for RB component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RB.Contrast, ...
+         strcat(iStartColumn, num2str(iStartRow + 16), ':CD', num2str(iStartRow + 16)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RB.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 17), ':CD', num2str(iStartRow + 17)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RB.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 18), ':CD', num2str(iStartRow + 18)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.RB.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 19), ':CD', num2str(iStartRow + 19)));
+
+% Write statistic data for GB component.
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.GB.Contrast, ...
+         strcat(iStartColumn, num2str(iStartRow + 20), ':CD', num2str(iStartRow + 20)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.GB.Correlation, ...
+         strcat(iStartColumn, num2str(iStartRow + 21), ':CD', num2str(iStartRow + 21)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.GB.Energy, ...
+         strcat(iStartColumn, num2str(iStartRow + 22), ':CD', num2str(iStartRow + 22)));
+xlswrite(strcat('Result/Tables/', iTableFileName, '.xlsx'), ...
+         iLeaveGroup.GB.Homogeneity, ...
+         strcat(iStartColumn, num2str(iStartRow + 23), ':CD', num2str(iStartRow + 23)));
+
+end
+
+##### SOURCE END #####
+--></body></html>

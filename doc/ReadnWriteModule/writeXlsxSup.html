@@ -1,0 +1,188 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>writeXlsxSup</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="writeXlsxSup.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> sup=writeXlsxSup(numbns,h,nh)
+
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, numbns, 1, strcat(<span class="string">'R'</span>,num2str(1)));
+sup.R.Contrast = findsupremum(h.R.Contrast,nh.R.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.R.Contrast, 1, strcat(<span class="string">'R'</span>,num2str(3)));
+sup.R.Correlation = findsupremum(h.R.Correlation,nh.R.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.R.Correlation, 1, strcat(<span class="string">'R'</span>,num2str(4)));
+sup.R.Energy = findsupremum(h.R.Energy,nh.R.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.R.Energy, 1, strcat(<span class="string">'R'</span>,num2str(5)));
+sup.R.Homogeneity = findsupremum(h.R.Homogeneity,nh.R.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.R.Homogeneity, 1, strcat(<span class="string">'R'</span>,num2str(6)));
+
+sup.G.Contrast = findsupremum(h.G.Contrast,nh.G.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.G.Contrast, 1, strcat(<span class="string">'T'</span>,num2str(3)));
+sup.G.Correlation = findsupremum(h.G.Correlation,nh.G.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.G.Correlation, 1, strcat(<span class="string">'T'</span>,num2str(4)));
+sup.G.Energy = findsupremum(h.G.Energy,nh.G.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.G.Energy, 1, strcat(<span class="string">'T'</span>,num2str(5)));
+sup.G.Homogeneity = findsupremum(h.G.Homogeneity,nh.G.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.G.Homogeneity, 1, strcat(<span class="string">'T'</span>,num2str(6)));
+
+sup.B.Contrast = findsupremum(h.B.Contrast,nh.B.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.B.Contrast, 1, strcat(<span class="string">'V'</span>,num2str(3)));
+sup.B.Correlation = findsupremum(h.B.Correlation,nh.B.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.B.Correlation, 1, strcat(<span class="string">'V'</span>,num2str(4)));
+sup.B.Energy = findsupremum(h.B.Energy,nh.B.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.B.Energy, 1, strcat(<span class="string">'V'</span>,num2str(5)));
+sup.B.Homogeneity = findsupremum(h.B.Homogeneity,nh.B.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.B.Homogeneity, 1, strcat(<span class="string">'V'</span>,num2str(6)));
+
+sup.RG.Contrast = findsupremum(h.RG.Contrast,nh.RG.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RG.Contrast, 1, strcat(<span class="string">'X'</span>,num2str(3)));
+sup.RG.Correlation = findsupremum(h.RG.Correlation,nh.RG.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RG.Correlation, 1, strcat(<span class="string">'X'</span>,num2str(4)));
+sup.RG.Energy = findsupremum(h.RG.Energy,nh.RG.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RG.Energy, 1, strcat(<span class="string">'X'</span>,num2str(5)));
+sup.RG.Homogeneity = findsupremum(h.RG.Homogeneity,nh.RG.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RG.Homogeneity, 1, strcat(<span class="string">'X'</span>,num2str(6)));
+
+sup.RB.Contrast = findsupremum(h.RB.Contrast,nh.RB.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RB.Contrast, 1, strcat(<span class="string">'Z'</span>,num2str(3)));
+sup.RB.Correlation = findsupremum(h.RB.Correlation,nh.RB.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RB.Correlation, 1, strcat(<span class="string">'Z'</span>,num2str(4)));
+sup.RB.Energy = findsupremum(h.RB.Energy,nh.RB.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RB.Energy, 1, strcat(<span class="string">'Z'</span>,num2str(5)));
+sup.RB.Homogeneity = findsupremum(h.RB.Homogeneity,nh.RB.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.RB.Homogeneity, 1, strcat(<span class="string">'Z'</span>,num2str(6)));
+
+sup.GB.Contrast = findsupremum(h.GB.Contrast,nh.GB.Contrast,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.GB.Contrast, 1, strcat(<span class="string">'AB'</span>,num2str(3)));
+sup.GB.Correlation = findsupremum(h.GB.Correlation,nh.GB.Correlation,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.GB.Correlation, 1, strcat(<span class="string">'AB'</span>,num2str(4)));
+sup.GB.Energy = findsupremum(h.GB.Energy,nh.GB.Energy,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.GB.Energy, 1, strcat(<span class="string">'AB'</span>,num2str(5)));
+sup.GB.Homogeneity = findsupremum(h.GB.Homogeneity,nh.GB.Homogeneity,numbns);
+xlswrite(<span class="string">'Result/Results.xlsx'</span>, sup.GB.Homogeneity, 1, strcat(<span class="string">'AB'</span>,num2str(6)));
+
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function sup=writeXlsxSup(numbns,h,nh)
+
+xlswrite('Result/Results.xlsx', numbns, 1, strcat('R',num2str(1)));
+sup.R.Contrast = findsupremum(h.R.Contrast,nh.R.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.R.Contrast, 1, strcat('R',num2str(3)));
+sup.R.Correlation = findsupremum(h.R.Correlation,nh.R.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.R.Correlation, 1, strcat('R',num2str(4)));
+sup.R.Energy = findsupremum(h.R.Energy,nh.R.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.R.Energy, 1, strcat('R',num2str(5)));
+sup.R.Homogeneity = findsupremum(h.R.Homogeneity,nh.R.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.R.Homogeneity, 1, strcat('R',num2str(6)));
+
+sup.G.Contrast = findsupremum(h.G.Contrast,nh.G.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.G.Contrast, 1, strcat('T',num2str(3)));
+sup.G.Correlation = findsupremum(h.G.Correlation,nh.G.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.G.Correlation, 1, strcat('T',num2str(4)));
+sup.G.Energy = findsupremum(h.G.Energy,nh.G.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.G.Energy, 1, strcat('T',num2str(5)));
+sup.G.Homogeneity = findsupremum(h.G.Homogeneity,nh.G.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.G.Homogeneity, 1, strcat('T',num2str(6)));
+
+sup.B.Contrast = findsupremum(h.B.Contrast,nh.B.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.B.Contrast, 1, strcat('V',num2str(3)));
+sup.B.Correlation = findsupremum(h.B.Correlation,nh.B.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.B.Correlation, 1, strcat('V',num2str(4)));
+sup.B.Energy = findsupremum(h.B.Energy,nh.B.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.B.Energy, 1, strcat('V',num2str(5)));
+sup.B.Homogeneity = findsupremum(h.B.Homogeneity,nh.B.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.B.Homogeneity, 1, strcat('V',num2str(6)));
+
+sup.RG.Contrast = findsupremum(h.RG.Contrast,nh.RG.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.RG.Contrast, 1, strcat('X',num2str(3)));
+sup.RG.Correlation = findsupremum(h.RG.Correlation,nh.RG.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.RG.Correlation, 1, strcat('X',num2str(4)));
+sup.RG.Energy = findsupremum(h.RG.Energy,nh.RG.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.RG.Energy, 1, strcat('X',num2str(5)));
+sup.RG.Homogeneity = findsupremum(h.RG.Homogeneity,nh.RG.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.RG.Homogeneity, 1, strcat('X',num2str(6)));
+
+sup.RB.Contrast = findsupremum(h.RB.Contrast,nh.RB.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.RB.Contrast, 1, strcat('Z',num2str(3)));
+sup.RB.Correlation = findsupremum(h.RB.Correlation,nh.RB.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.RB.Correlation, 1, strcat('Z',num2str(4)));
+sup.RB.Energy = findsupremum(h.RB.Energy,nh.RB.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.RB.Energy, 1, strcat('Z',num2str(5)));
+sup.RB.Homogeneity = findsupremum(h.RB.Homogeneity,nh.RB.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.RB.Homogeneity, 1, strcat('Z',num2str(6)));
+
+sup.GB.Contrast = findsupremum(h.GB.Contrast,nh.GB.Contrast,numbns);
+xlswrite('Result/Results.xlsx', sup.GB.Contrast, 1, strcat('AB',num2str(3)));
+sup.GB.Correlation = findsupremum(h.GB.Correlation,nh.GB.Correlation,numbns);
+xlswrite('Result/Results.xlsx', sup.GB.Correlation, 1, strcat('AB',num2str(4)));
+sup.GB.Energy = findsupremum(h.GB.Energy,nh.GB.Energy,numbns);
+xlswrite('Result/Results.xlsx', sup.GB.Energy, 1, strcat('AB',num2str(5)));
+sup.GB.Homogeneity = findsupremum(h.GB.Homogeneity,nh.GB.Homogeneity,numbns);
+xlswrite('Result/Results.xlsx', sup.GB.Homogeneity, 1, strcat('AB',num2str(6)));
+
+end
+##### SOURCE END #####
+--></body></html>

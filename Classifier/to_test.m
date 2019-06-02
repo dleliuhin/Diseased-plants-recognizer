@@ -1,18 +1,23 @@
 function [] = to_test(iPath, iMarks, iGroupValue)
 %% TO_TEST 
-% Summary of this function goes here. 
+% Calulating and comparing sample test.
 % 
 % * Syntax 
 % 
-% [OUTPUTARGS] = TO_TEST(INPUTARGS)
+% [] = TO_TEST(IPATH, IMARKS, IGROUPVALUE)
 % 
 % * Input 
 % 
-% -- INPUTARGS -  
+% -- iPath - relative path to test images dataset.
 % 
-% * Output 
+% -- iMarks - filed structure of statistic "averages" and indicators
+%             including mean, std, median, mode, range, minRange, maxRange
+%             according to plot values.
+%             Every indicator contains R, G, B, RG, RB, GB components.
+%             Every component contains Contrast, Correlation, Energy,
+%             Homogeneity properties.
 % 
-% -- OUTPUTARGS -  
+% -- iGroupValue - Number of images in one group. 
 % 
 % * Examples: 
 % 
@@ -20,7 +25,7 @@ function [] = to_test(iPath, iMarks, iGroupValue)
 % 
 % * See also: 
 % 
-% List related files here 
+% INITIALIZEINDICATOR, TO_TEST_GROUP
 % 
 % * Author: Dmitrii Leliuhin 
 % * Email: dleliuhin@mail.ru 

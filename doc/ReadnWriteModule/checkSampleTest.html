@@ -1,0 +1,395 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>checkSampleTest</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-06-02"><meta name="DC.source" content="checkSampleTest.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">CHECKSAMPLETEST</a></li><li><a href="#3">Code</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> checkSampleTest(marks, iGroupValue)
+</pre><h2>CHECKSAMPLETEST<a name="2"></a></h2><p>Check sample test from specific sample test folders and write results to SampleTestResult.txt file</p><div><ul><li>Syntax</li></ul></div><p>[] = CHECKSAMPLETEST(MARKS, GROUPVALUE)</p><div><ul><li>Intput</li></ul></div><p>-- marks - structure of statistic "averages" and indicators.</p><p>-- groupValue - Number of images in one group.</p><div><ul><li>Examples:</li></ul></div><p>Provide sample usage code here.</p><div><ul><li>See also:</li></ul></div><p>INITIALIZESAMPLETESTPLGROUPS, FINDGLCMSTATISTIC,</p><div><ul><li>Authors: Dmitrii Leliuhin</li><li>Email: <a href="mailto:dleliuhin@mail.ru">dleliuhin@mail.ru</a></li><li>Date: 04/09/2018 18:51:36</li><li>Version: 1.0 $</li><li>Requirements: PCWIN64, MatLab R2016a</li></ul></div><div><ul><li>Warning:</li></ul></div><p>No Warnings.</p><div><ul><li>TODO:</li></ul></div><p>TODO list.</p><h2>Code<a name="3"></a></h2><pre class="codeinput">clc;
+
+fullFileName = <span class="string">'Result/PercentRecognition/TestResult.txt'</span>;
+
+<span class="comment">% Opening output .txt file for writing.</span>
+resFileName = fopen(fullFileName, <span class="string">'w'</span>);
+
+<span class="comment">% Writing column names</span>
+<span class="comment">% fprintf(resFileName, strcat('imagenames \t\t\t\t| atribute | Stats', ...</span>
+<span class="comment">%       '          | Healthy | delta  | Test   | delta  | Ill    | Result'));</span>
+<span class="comment">% fprintf(resFileName, '\n\n');</span>
+
+fclose(resFileName);
+
+<span class="comment">% Reading sample test image files from folders.</span>
+fileName_test = dir(<span class="string">'Dataset/Wheat/Test/All/*.jpg'</span>);
+
+to_test(fileName_test);
+
+fclose(resFileName);
+
+<span class="comment">% % diseaseCode = 'undef';</span>
+<span class="comment">% %</span>
+<span class="comment">% % count.h = 0; %&gt;</span>
+<span class="comment">% % count.nh1 = 0; %&gt;</span>
+<span class="comment">% % res.h = 0; %&gt;</span>
+<span class="comment">% % res.(diseaseCode) = 0; %&gt;</span>
+<span class="comment">% % attribute = 1; %&gt;</span>
+<span class="comment">% % iterCount = 0; %&gt;</span>
+<span class="comment">% %</span>
+<span class="comment">% % tests = initializeSampleTestPlGroups();</span>
+<span class="comment">% %</span>
+<span class="comment">% % resFileName = fopen('Result/PercentRecognition/TestResult.txt', 'a');</span>
+<span class="comment">% %</span>
+<span class="comment">% % for i = 1:length(fileName_add.h(:))</span>
+<span class="comment">% % %%</span>
+<span class="comment">% %     % Read image of a healthy leaf of a plant from graphics file</span>
+<span class="comment">% %     he = imread(fullfile('Material/Healthy_add', fileName_add.h(i).name));</span>
+<span class="comment">% %</span>
+<span class="comment">% %     stats = findGlcmStatistic(he);</span>
+<span class="comment">% %</span>
+<span class="comment">% %     tests.h = incrementHealthyComponents(tests.h, stats);</span>
+<span class="comment">% %</span>
+<span class="comment">% % %     tests.h = checkStatsNan(tests.h);</span>
+<span class="comment">% %</span>
+<span class="comment">% %     if ((mod(i, groupValue) == 0) &amp;&amp; (i &gt;= groupValue))</span>
+<span class="comment">% %         res = writeGroupResult(resFileName, ...</span>
+<span class="comment">% %                                tests.h, ...</span>
+<span class="comment">% %                                marks.leaves.h, ...</span>
+<span class="comment">% %                                fileName_add.h(i - groupValue + 1).name, ...</span>
+<span class="comment">% %                                fileName_add.h(i).name, ...</span>
+<span class="comment">% %                                attribute, ...</span>
+<span class="comment">% %                                count, ...</span>
+<span class="comment">% %                                res);</span>
+<span class="comment">% %</span>
+<span class="comment">% %         tests = setNullTestStats();</span>
+<span class="comment">% %         iterCount = iterCount + 1;</span>
+<span class="comment">% %     end</span>
+<span class="comment">% %</span>
+<span class="comment">% %     clear stats r g b rgb_image;</span>
+<span class="comment">% %     clear fR fG fB fRG fRB fGB glcm;</span>
+<span class="comment">% %     clear he hef;</span>
+<span class="comment">% % end</span>
+<span class="comment">% %</span>
+<span class="comment">% % fprintf(resFileName, ...</span>
+<span class="comment">% %         '\n Final percent correct recognition: %3.2f%% \n', ...</span>
+<span class="comment">% %         res.h / iterCount * 100);</span>
+<span class="comment">% % fprintf(resFileName, ...</span>
+<span class="comment">% %         ' Final percent failed recognition: %3.2f%% \n\n\n', ...</span>
+<span class="comment">% %         res.(diseaseCode) / iterCount * 100);</span>
+<span class="comment">% %</span>
+<span class="comment">% % %Start testing ill plantics</span>
+<span class="comment">% %</span>
+<span class="comment">% % groupTable = initializeGroupTable();</span>
+<span class="comment">% % TableColumns = initializeTableColumns();</span>
+<span class="comment">% %</span>
+<span class="comment">% % resFileName = fopen(fullFileName, 'a');</span>
+<span class="comment">% %</span>
+<span class="comment">% % diseaseCode = 'nh1';</span>
+<span class="comment">% %</span>
+<span class="comment">% % Statistics = initializeGroupStatistics(diseaseCode, 0);</span>
+<span class="comment">% %</span>
+<span class="comment">% % iterCount = 0;</span>
+<span class="comment">% %</span>
+<span class="comment">% % tests = initializeSampleTestPlGroups();</span>
+<span class="comment">% %</span>
+<span class="comment">% % for i = 1:length(fileName_add.(diseaseCode)(:))</span>
+<span class="comment">% %</span>
+<span class="comment">% %     he = imread(fullfile('Material/Diseased_1_add', ...</span>
+<span class="comment">% %                 fileName_add.(diseaseCode)(i).name));</span>
+<span class="comment">% %</span>
+<span class="comment">% %     stats = findGlcmStatistic(he);</span>
+<span class="comment">% %</span>
+<span class="comment">% %     tests.(diseaseCode) = incrementDiseasedComponents(tests. ...</span>
+<span class="comment">% %                                                       (diseaseCode), ...</span>
+<span class="comment">% %                                                       stats);</span>
+<span class="comment">% %</span>
+<span class="comment">% % %     tests.nh = checkStatsNan(tests.nh);</span>
+<span class="comment">% %</span>
+<span class="comment">% %     if ((mod(i, iGroupValue) == 0) &amp;&amp; (i &gt;= iGroupValue))</span>
+<span class="comment">% %</span>
+<span class="comment">% %         [Statistics, ...</span>
+<span class="comment">% %          TableColumns] = writeGroupResult(resFileName, ...</span>
+<span class="comment">% %                                           iGroupValue, ...</span>
+<span class="comment">% %                                           diseaseCode, ...</span>
+<span class="comment">% %                                           tests.(diseaseCode), ...</span>
+<span class="comment">% %                                           marks, ...</span>
+<span class="comment">% %                       fileName_add.(diseaseCode)(i-iGroupValue+1).name, ...</span>
+<span class="comment">% %                                     fileName_add.(diseaseCode)(i).name, ...</span>
+<span class="comment">% %                                           Statistics, ...</span>
+<span class="comment">% %                                           TableColumns);</span>
+<span class="comment">% %</span>
+<span class="comment">% %         groupTable = incrementGroupTable(groupTable, TableColumns);</span>
+<span class="comment">% %</span>
+<span class="comment">% % %         writetable(groupTable, fullFileName);</span>
+<span class="comment">% %         disp(groupTable);</span>
+<span class="comment">% %</span>
+<span class="comment">% %         printGroupVerdict(resFileName, Statistics);</span>
+<span class="comment">% %</span>
+<span class="comment">% %         TableColumns(:,:) = [];</span>
+<span class="comment">% %         groupTable(:,:) = [];</span>
+<span class="comment">% %         groupTable = clearGroupTable(groupTable);</span>
+<span class="comment">% %</span>
+<span class="comment">% %         tests = setNullTestStats();</span>
+<span class="comment">% %         iterCount = iterCount + 1;</span>
+<span class="comment">% %     end</span>
+<span class="comment">% %</span>
+<span class="comment">% %     clear stats r g b rgb_image;</span>
+<span class="comment">% %     clear fR fG fB fRG fRB fGB glcm;</span>
+<span class="comment">% %     clear he hef;</span>
+<span class="comment">% % end</span>
+<span class="comment">% %</span>
+<span class="comment">% % %fprintf(resFileName, ...</span>
+<span class="comment">% % fprintf(...</span>
+<span class="comment">% %         '\n Final percent correct recognition: %3.2f%% \n', ...</span>
+<span class="comment">% %         Statistics.res.(diseaseCode) / iterCount * 100);</span>
+<span class="comment">% % %fprintf(%resFileName, ...</span>
+<span class="comment">% % fprintf(...</span>
+<span class="comment">% %         ' Final percent failed recognition: %3.2f%% \n\n\n', ...</span>
+<span class="comment">% %         Statistics.res.h / iterCount * 100);</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function checkSampleTest(marks, iGroupValue)
+%% CHECKSAMPLETEST
+% Check sample test from specific sample test folders and
+% write results to SampleTestResult.txt file 
+% 
+% * Syntax
+%
+% [] = CHECKSAMPLETEST(MARKS, GROUPVALUE)
+%
+% * Intput
+%
+% REPLACE_WITH_DASH_DASH marks - structure of statistic "averages" and indicators.
+%
+% REPLACE_WITH_DASH_DASH groupValue - Number of images in one group.
+%
+% * Examples: 
+% 
+% Provide sample usage code here.
+% 
+% * See also: 
+%   
+% INITIALIZESAMPLETESTPLGROUPS, FINDGLCMSTATISTIC, 
+ %           
+% * Authors: Dmitrii Leliuhin
+% * Email: dleliuhin@mail.ru 
+% * Date: 04/09/2018 18:51:36
+% * Version: 1.0 $ 
+% * Requirements: PCWIN64, MatLab R2016a  
+% 
+% * Warning: 
+%
+% No Warnings.
+% 
+% * TODO: 
+% 
+% TODO list.
+% 
+
+%% Code
+clc;
+
+fullFileName = 'Result/PercentRecognition/TestResult.txt';
+
+% Opening output .txt file for writing.
+resFileName = fopen(fullFileName, 'w');
+
+% Writing column names
+% fprintf(resFileName, strcat('imagenames \t\t\t\t| atribute | Stats', ...
+%       '          | Healthy | delta  | Test   | delta  | Ill    | Result'));
+% fprintf(resFileName, '\n\n');                 
+
+fclose(resFileName);
+
+% Reading sample test image files from folders.
+fileName_test = dir('Dataset/Wheat/Test/All/*.jpg');
+
+to_test(fileName_test);
+
+fclose(resFileName);
+
+% % diseaseCode = 'undef';
+% % 
+% % count.h = 0; %>
+% % count.nh1 = 0; %>
+% % res.h = 0; %>
+% % res.(diseaseCode) = 0; %>
+% % attribute = 1; %>
+% % iterCount = 0; %>
+% % 
+% % tests = initializeSampleTestPlGroups();
+% % 
+% % resFileName = fopen('Result/PercentRecognition/TestResult.txt', 'a');
+% % 
+% % for i = 1:length(fileName_add.h(:))
+% % %%
+% %     % Read image of a healthy leaf of a plant from graphics file
+% %     he = imread(fullfile('Material/Healthy_add', fileName_add.h(i).name));
+% %     
+% %     stats = findGlcmStatistic(he);
+% %     
+% %     tests.h = incrementHealthyComponents(tests.h, stats);
+% %     
+% % %     tests.h = checkStatsNan(tests.h);
+% %     
+% %     if ((mod(i, groupValue) == 0) && (i >= groupValue))
+% %         res = writeGroupResult(resFileName, ...
+% %                                tests.h, ...
+% %                                marks.leaves.h, ...
+% %                                fileName_add.h(i - groupValue + 1).name, ...
+% %                                fileName_add.h(i).name, ...
+% %                                attribute, ...
+% %                                count, ...
+% %                                res);
+% %                            
+% %         tests = setNullTestStats();
+% %         iterCount = iterCount + 1;
+% %     end
+% %     
+% %     clear stats r g b rgb_image;
+% %     clear fR fG fB fRG fRB fGB glcm;
+% %     clear he hef;
+% % end     
+% % 
+% % fprintf(resFileName, ...
+% %         '\n Final percent correct recognition: %3.2f%% \n', ...
+% %         res.h / iterCount * 100);
+% % fprintf(resFileName, ...
+% %         ' Final percent failed recognition: %3.2f%% \n\n\n', ...
+% %         res.(diseaseCode) / iterCount * 100);
+% % 
+% % %Start testing ill plantics
+% % 
+% % groupTable = initializeGroupTable();
+% % TableColumns = initializeTableColumns();
+% % 
+% % resFileName = fopen(fullFileName, 'a');
+% % 
+% % diseaseCode = 'nh1';
+% % 
+% % Statistics = initializeGroupStatistics(diseaseCode, 0);
+% % 
+% % iterCount = 0;
+% % 
+% % tests = initializeSampleTestPlGroups();
+% % 
+% % for i = 1:length(fileName_add.(diseaseCode)(:))
+% % 
+% %     he = imread(fullfile('Material/Diseased_1_add', ...
+% %                 fileName_add.(diseaseCode)(i).name));
+% %     
+% %     stats = findGlcmStatistic(he);
+% %     
+% %     tests.(diseaseCode) = incrementDiseasedComponents(tests. ...
+% %                                                       (diseaseCode), ...
+% %                                                       stats);
+% %     
+% % %     tests.nh = checkStatsNan(tests.nh);
+% %     
+% %     if ((mod(i, iGroupValue) == 0) && (i >= iGroupValue))
+% %         
+% %         [Statistics, ...
+% %          TableColumns] = writeGroupResult(resFileName, ...
+% %                                           iGroupValue, ...
+% %                                           diseaseCode, ...
+% %                                           tests.(diseaseCode), ...
+% %                                           marks, ...
+% %                       fileName_add.(diseaseCode)(i-iGroupValue+1).name, ...
+% %                                     fileName_add.(diseaseCode)(i).name, ...
+% %                                           Statistics, ...
+% %                                           TableColumns);
+% %         
+% %         groupTable = incrementGroupTable(groupTable, TableColumns);
+% %                                       
+% % %         writetable(groupTable, fullFileName);
+% %         disp(groupTable);
+% %         
+% %         printGroupVerdict(resFileName, Statistics);
+% %         
+% %         TableColumns(:,:) = [];
+% %         groupTable(:,:) = [];
+% %         groupTable = clearGroupTable(groupTable);
+% %         
+% %         tests = setNullTestStats();
+% %         iterCount = iterCount + 1;
+% %     end
+% %      
+% %     clear stats r g b rgb_image;
+% %     clear fR fG fB fRG fRB fGB glcm;
+% %     clear he hef;
+% % end
+% % 
+% % %fprintf(resFileName, ...
+% % fprintf(...
+% %         '\n Final percent correct recognition: %3.2f%% \n', ...
+% %         Statistics.res.(diseaseCode) / iterCount * 100);
+% % %fprintf(%resFileName, ...
+% % fprintf(...
+% %         ' Final percent failed recognition: %3.2f%% \n\n\n', ...
+% %         Statistics.res.h / iterCount * 100);
+
+end
+##### SOURCE END #####
+--></body></html>

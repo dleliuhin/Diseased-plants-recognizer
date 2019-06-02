@@ -1,6 +1,6 @@
 function main()
 %% MAIN 
-% Plant disease recognition program from images.
+% Plant's leaf disease recognition program from images.
 % 
 % * Syntax
 %
@@ -12,12 +12,12 @@ function main()
 % 
 % * See also: 
 %
-% INITIALIZEPLANTICGROUPS, FINDGLCMSTATISTIC, INITIALIZEMARKS, 
+% INITIALIZEPLANTICGROUPS, TO_TRAIN, INITIALIZEMARKS, 
 % INITIALIZEPLOTSVALUES, GRAPHGAUSSSUBMODULE, GETMARKS, 
-% WRITEXLSXAVERAGES, WRITEXLSXEACHDATA, CHECKSAMPLETEST
+% GETSTDAVERVALUE, TO_TEST
 %           
 % * Authors: Dmitrii Leliuhin, Vladimir Tutigin
-% * Email: dleliuhin@mail.ru 
+% * Email: dleliuhin@gmail.com
 % * Date: 17/07/2018 15:30:25 
 % * Version: 1.0 $ 
 % * Requirements: PCWIN64, MatLab R2016a  
@@ -55,12 +55,9 @@ to_train(plants);
 
 % load('Workspaces/plants.mat');
 % load('Workspaces/normalizedplants.mat');
-load('Workspaces/cutPlants.mat');
+% load('Workspaces/cutPlants.mat');
 
 % remove_Nans(plants);
-
-% leaves.h = checkStatsNan(leaves.h);
-% leaves.nh = checkStatsNan(leaves.nh);
 
 %-----------------------Finding averages attributes-------------------
 
@@ -104,7 +101,7 @@ close all;
 
 %% ADD FEATURES
 
-load('Workspaces/cutMarks.mat');
+% load('Workspaces/cutMarks.mat');
 marks = getMarks(marks, plotGaussValues);
 % marks = getMarks(marks, plotHistValues);
 

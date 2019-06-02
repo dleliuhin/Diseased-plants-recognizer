@@ -8,11 +8,19 @@ function [] = writeTestResultsTxt(iLogsFile, iMarks, iGroup, decis)
 %
 % * Input
 %
-% -- INPUTARGS -
+% -- iLogsFile - file for output result logs.
 %
-% * Output
+% -- iMarks - filed structure of statistic "averages" and indicators
+%             including mean, std, median, mode, range, minRange, maxRange
+%             according to plot values.
+%             Every indicator contains R, G, B, RG, RB, GB components.
+%             Every component contains Contrast, Correlation, Energy,
+%             Homogeneity properties.
 %
-% -- OUTPUTARGS -
+% -- iGroup - filled structure for specific group of plant leaves 
+%             by mean values.
+%
+% -- decis -
 %
 % * Examples:
 %
